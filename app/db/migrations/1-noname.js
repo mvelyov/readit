@@ -5,9 +5,10 @@ var Sequelize = require('sequelize');
 /**
  * Actions summary:
  *
+ * createTable "subreadits", deps: []
  * createTable "tags", deps: []
  * createTable "users", deps: []
- * createTable "posts", deps: [users]
+ * createTable "posts", deps: [subreadits, users]
  * createTable "comments", deps: [posts, users]
  * createTable "postsTags", deps: [posts, tags]
  *
@@ -16,11 +17,39 @@ var Sequelize = require('sequelize');
 var info = {
     "revision": 1,
     "name": "noname",
-    "created": "2018-03-19T16:54:30.041Z",
+    "created": "2018-03-20T13:55:04.329Z",
     "comment": ""
 };
 
 var migrationCommands = [{
+        fn: "createTable",
+        params: [
+            "subreadits",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "name": {
+                    "type": Sequelize.STRING,
+                    "allowNull": false,
+                    "unique": true
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
         fn: "createTable",
         params: [
             "tags",
@@ -33,9 +62,7 @@ var migrationCommands = [{
                 },
                 "name": {
                     "type": Sequelize.STRING,
-                    "validate": {
-                        "notNull": true
-                    },
+                    "allowNull": false,
                     "unique": true
                 },
                 "createdAt": {
@@ -64,25 +91,26 @@ var migrationCommands = [{
                 "userName": {
                     "type": Sequelize.STRING,
                     "validate": {
-                        "notNull": true,
                         "notEmpty": true
                     },
+                    "allowNull": false,
                     "unique": true
                 },
                 "password": {
                     "type": Sequelize.STRING,
                     "validate": {
-                        "notNull": true,
                         "notEmpty": true,
                         "len": [3, 20]
-                    }
+                    },
+                    "allowNull": false
                 },
                 "avatar": {
                     "type": Sequelize.STRING,
                     "validate": {
                         "isUrl": true
                     },
-                    "defaultValue": "http://www.softicons.com/tv-movie-icons/iron2man-helmet-icons-by-svengraph"
+                    "defaultValue": "http://www.softicons.com/tv-movie-icons/iron2man-helmet-icons-by-svengraph",
+                    "allowNull": false
                 },
                 "createdAt": {
                     "type": Sequelize.DATE,
@@ -109,10 +137,12 @@ var migrationCommands = [{
                 },
                 "name": {
                     "type": Sequelize.STRING,
+                    "allowNull": false,
                     "unique": true
                 },
                 "content": {
-                    "type": Sequelize.TEXT
+                    "type": Sequelize.TEXT,
+                    "allowNull": false
                 },
                 "image": {
                     "type": Sequelize.STRING,
@@ -128,6 +158,16 @@ var migrationCommands = [{
                 "updatedAt": {
                     "type": Sequelize.DATE,
                     "allowNull": false
+                },
+                "subreaditId": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "onDelete": "SET NULL",
+                    "references": {
+                        "model": "subreadits",
+                        "key": "id"
+                    },
+                    "allowNull": true
                 },
                 "userId": {
                     "type": Sequelize.INTEGER,
@@ -155,7 +195,8 @@ var migrationCommands = [{
                     "allowNull": false
                 },
                 "content": {
-                    "type": Sequelize.TEXT
+                    "type": Sequelize.TEXT,
+                    "allowNull": false
                 },
                 "createdAt": {
                     "type": Sequelize.DATE,

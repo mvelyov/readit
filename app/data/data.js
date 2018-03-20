@@ -2,6 +2,7 @@ const {
     tag,
     post,
     comment,
+    subreadit,
 } = require('../db/models');
 
 const Data = require('./generic.data');
@@ -12,4 +13,5 @@ module.exports = {
     posts: new Data(post),
     comment: new Data(comment),
     users: new UsersData(),
+    subreadits: new Data(subreadit),
 };

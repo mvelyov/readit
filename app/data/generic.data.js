@@ -14,6 +14,14 @@ class Data {
     create(newObject) {
         return this.Model.create(newObject);
     }
+
+    finidCreateFind(object, columnName, value) {
+        return this.Model.finidCreateFind({
+            where: {
+                columnName: value,
+            },
+        });
+    }
 }
 
 module.exports = Data;

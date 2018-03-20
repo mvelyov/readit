@@ -79,6 +79,16 @@
                     "allowNull": false,
                     "seqType": "Sequelize.DATE"
                 },
+                "subreaditId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "subreadits",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                },
                 "userId": {
                     "allowNull": true,
                     "references": {
@@ -88,6 +98,31 @@
                     "onDelete": "SET NULL",
                     "onUpdate": "CASCADE",
                     "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        },
+        "subreadits": {
+            "tableName": "subreadits",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "name": {
+                    "unique": true,
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
                 }
             },
             "indexes": []
@@ -201,5 +236,5 @@
             "indexes": []
         }
     },
-    "revision": 3
+    "revision": 4
 }

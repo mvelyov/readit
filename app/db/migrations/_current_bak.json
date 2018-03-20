@@ -10,6 +10,7 @@
                     "seqType": "Sequelize.INTEGER"
                 },
                 "content": {
+                    "allowNull": false,
                     "seqType": "Sequelize.TEXT"
                 },
                 "createdAt": {
@@ -54,9 +55,11 @@
                 },
                 "name": {
                     "unique": true,
+                    "allowNull": false,
                     "seqType": "Sequelize.STRING"
                 },
                 "content": {
+                    "allowNull": false,
                     "seqType": "Sequelize.TEXT"
                 },
                 "image": {
@@ -100,9 +103,7 @@
                 },
                 "name": {
                     "unique": true,
-                    "validate": {
-                        "notNull": true
-                    },
+                    "allowNull": false,
                     "seqType": "Sequelize.STRING"
                 },
                 "createdAt": {
@@ -145,6 +146,7 @@
                     "seqType": "Sequelize.STRING"
                 },
                 "avatar": {
+                    "allowNull": false,
                     "defaultValue": {
                         "value": "http://www.softicons.com/tv-movie-icons/iron2man-helmet-icons-by-svengraph"
                     },
@@ -199,5 +201,5 @@
             "indexes": []
         }
     },
-    "revision": 2
+    "revision": 3
 }

@@ -15,8 +15,8 @@ class Data {
         return this.Model.create(newObject);
     }
 
-    finidCreateFind(object, columnName, value) {
-        return this.Model.finidCreateFind({
+    findCreateFind(object, columnName, value) {
+        return this.Model.findCreateFind({
             where: {
                 columnName: value,
             },

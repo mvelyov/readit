@@ -1,26 +1,38 @@
-const {
-    db,
-} = require('../../db/models');
+class MainPageController {
+    constructor(data) {
+        this.data = data;
+    }
+    getAll() {
+        const posts = this.data.posts.getAll();
+        return posts;
+    }
+    async getMainPageInfoById(postId) {
+        const {
+            image,
+            name,
+            userId,
+            subreaditId,
+        } = await this.data.posts.getById(postId);
 
-const {
-    comment,
-    post,
-    tag,
-    user,
-} = db;
+        const numberofComments =
+            (await this.data.comments.getAllById(postId)
+                .map((item) => item.dataValues.content)).length;
 
-// class MainPageController {
-//     constructor(data) {
-//         this.data = data;
-//     }
+        const {
+            userName,
+        } = await this.data.users.getById(userId);
 
-// }
+        let subreaditName = await this.data.subreadits.getById(subreaditId);
+        subreaditName = subreaditName.name;
 
-const run = async () => {
-    const posts = await post.findById(1);
-    console.log(posts);
-};
+        return {
+            image,
+            name,
+            numberofComments,
+            userName,
+            subreaditName,
+        };
+    }
+}
 
-run();
-
-// module.exports = MainPageController;
+module.exports = MainPageController;

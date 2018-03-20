@@ -1,19 +1,18 @@
 const Data = require('./generic.data');
 
 const {
-    // example ; to be changed when models are ready
-    User,
+    user,
 } = require('../db/models');
 
 class UsersData extends Data {
     constructor() {
-        super(User);
+        super(user);
     }
 
     findByUserName(username) {
         return this.Model.findOne({
             where: {
-                username,
+                userName: username,
             },
         });
     }

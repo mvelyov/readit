@@ -9,10 +9,17 @@ class CommentsData extends Data {
         super(comment);
     }
 
-    getAllById(id) {
+    getCommentsOnPost(id) {
         return this.Model.findAll({
             where: {
                 postId: id,
+            },
+        });
+    }
+    getCommentsForEachUser(id) {
+        return this.Model.findAll({
+            where: {
+                userId: id,
             },
         });
     }

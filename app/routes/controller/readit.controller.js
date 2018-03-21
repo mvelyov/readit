@@ -2,11 +2,13 @@ class MainPageController {
     constructor(data) {
         this.data = data;
     }
+
     getAll() {
         const posts = this.data.posts.getAll();
         return posts;
     }
-    async getMainPageInfoById(postId) {
+
+    async getMainPageInfo(postId) {
         const {
             image,
             name,
@@ -15,7 +17,7 @@ class MainPageController {
         } = await this.data.posts.getById(postId);
 
         const numberofComments =
-            (await this.data.comments.getAllById(postId)
+            (await this.data.comments.getCommentsOnPost(postId)
                 .map((item) => item.dataValues.content)).length;
 
         const {
@@ -31,6 +33,19 @@ class MainPageController {
             numberofComments,
             userName,
             subreaditName,
+        };
+    }
+
+    async getUsersComments(username) {
+        const {
+            id,
+        } = await this.data.users.findByUserName(username);
+
+        const userComments =
+            (await this.data.comments.getCommentsForEachUser(id)
+            .map((item) => [item.dataValues.content, item.dataValues.postId]));
+        return {
+            userComments,
         };
     }
 }

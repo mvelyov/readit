@@ -1,4 +1,4 @@
-class MainPageController {
+class ReadItController {
     constructor(data) {
         this.data = data;
     }
@@ -9,12 +9,14 @@ class MainPageController {
     }
 
     async getMainPageInfo(postId) {
+        const post = await this.data.posts.getById(postId);
+        const tags = post.getTags();
         const {
             image,
             name,
             userId,
             subreaditId,
-        } = await this.data.posts.getById(postId);
+        } = post;
 
         const numberofComments =
             (await this.data.comments.getCommentsOnPost(postId)
@@ -33,6 +35,7 @@ class MainPageController {
             numberofComments,
             userName,
             subreaditName,
+            tags,
         };
     }
 
@@ -48,6 +51,23 @@ class MainPageController {
             userComments,
         };
     }
+
+    // async getPostsTags(postId) {
+    //     let tags = await this.data.tags.findAll({
+    //         include: [{
+    //             model: this.data.post,
+    //             where: {
+    //                 postId: postId,
+    //             },
+    //         }],
+    //     });
+    //     tags = tags.map((tag, index) => tag[index].dataValues.name);
+
+    //     return {
+    //         tags,
+    //     };
+    // }
 }
 
-module.exports = MainPageController;
+module.exports = ReadItController;
+

@@ -3,14 +3,26 @@ class ReadItController {
         this.data = data;
     }
 
-    getAll() {
-        const posts = this.data.posts.getAll();
+    async getAllPosts() {
+        const posts = await this.data.posts.getAll();
         return posts;
     }
 
-    async getMainPageInfo(postId) {
+    async getCreateData() {
+        const [tags, subreadits] =
+        await Promise.all([
+            this.data.tag.getAll(),
+            this.data.subreadits.getAll()]);
+        return {
+            tags,
+            subreadits,
+        };
+    }
+
+    async getInfo(postId) {
         const post = await this.data.posts.getById(postId);
-        const tags = post.getTags();
+        let tags = await post.getTags();
+        tags = tags.map((tag) => tag.dataValues.name);
         const {
             image,
             name,
@@ -18,12 +30,16 @@ class ReadItController {
             subreaditId,
         } = post;
 
-        const numberofComments =
+        const comments =
             (await this.data.comments.getCommentsOnPost(postId)
-                .map((item) => item.dataValues.content)).length;
+                .map((item) => item.dataValues.content));
 
         const {
             userName,
+        } = await this.data.users.getById(userId);
+
+        const {
+            avatar,
         } = await this.data.users.getById(userId);
 
         let subreaditName = await this.data.subreadits.getById(subreaditId);
@@ -32,10 +48,11 @@ class ReadItController {
         return {
             image,
             name,
-            numberofComments,
+            comments,
             userName,
             subreaditName,
             tags,
+            avatar,
         };
     }
 
@@ -46,28 +63,41 @@ class ReadItController {
 
         const userComments =
             (await this.data.comments.getCommentsForEachUser(id)
-            .map((item) => [item.dataValues.content, item.dataValues.postId]));
+                .map((item) =>
+                [item.dataValues.content, item.dataValues.postId]));
         return {
             userComments,
         };
     }
 
-    // async getPostsTags(postId) {
-    //     let tags = await this.data.tags.findAll({
-    //         include: [{
-    //             model: this.data.post,
-    //             where: {
-    //                 postId: postId,
-    //             },
-    //         }],
-    //     });
-    //     tags = tags.map((tag, index) => tag[index].dataValues.name);
+    async createPost(postObject) {
+        let userId = await this.data.users.findByUserName(postObject.user);
+        userId = userId.dataValues.id;
+        const tagIds = Array.isArray(postObject.tags) ?
+            postObject.tags : [postObject.tags];
+        postObject.userId = userId;
+        const currentTags = await Promise.all(
+            tagIds.map((id) => {
+                return this.data.tags.getById(id);
+            }));
+        const newPost = await this.data.posts.create(postObject);
+        await newPost.setTags(currentTags);
+        return newPost;
+    }
 
-    //     return {
-    //         tags,
-    //     };
-    // }
+    async createNewTag(name) {
+        const newTag = await this.data.tags.findCreateFind({
+            where: {
+                name: name,
+            },
+        });
+        return newTag;
+    }
+
+    async createNewComment(commentObj) {
+        const newComment = await this.data.comments.create(commentObj);
+        return newComment;
+    }
 }
 
 module.exports = ReadItController;
-

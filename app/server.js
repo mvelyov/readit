@@ -23,8 +23,6 @@ app.get('/home', async (req, res) => {
     res.render('home', model);
 });
 
-
-
 // app.get('/content/:id', (req, res) => {
 //     const id = req.params.id;
 //     const getpost = data.getPost(id);
@@ -39,30 +37,32 @@ app.get('/home', async (req, res) => {
 
 app.get('/create/post', (req, res) => {
     // const model ={};
-    res.render('create/post');//, model);
+    res.render('create/post'); //, model);
 });
 
 app.post('/home', async (req, res) => {
     const post = req.body;
-    
+
     post.subreaditId = +post.subreaditId;
     post.tags = [+post.tags];
-    console.log(post);
+    // console.log(post);
     await controller.createPost(post);
     res.redirect('/home');
 
-    
+
 });
 
-app.get('/home/cat', async (req, res) => {
-    //const category = req.params.category;
-// console.log('----------------------');
-// console.log(category);
-// console.log('----------------------');
-    const listCategory = await controller.getPostsBySubreadit('cat');
- console.log('----------------------');
-console.log(listCategory);
-console.log('----------------------');
+app.get('/home/:category', async (req, res) => {
+    const {
+        category,
+    } = req.params;
+    // console.log('----------------------');
+    // console.log(obj);
+    // console.log('----------------------');
+    const listCategory = (await controller.getPostsBySubreadit(category)).map((item) => item.dataValues.content);
+    // console.log('----------------------');
+    // console.log(listCategory);
+    // console.log('----------------------');
     const model = {
         listCategory,
     };

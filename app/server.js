@@ -69,10 +69,6 @@ app.get('/create/post', (req, res) => {
 //     res.render('content', model);
 // });
 
-app.get('/create/post', (req, res) => {
-    // const model ={};
-    res.render('create/post'); //, model);
->>>>>>> 83fcb3a4cb115eb68890173547ab2c3ab0b7ed07
 });
 
 app.post('/home', async (req, res) => {
@@ -83,7 +79,6 @@ app.post('/home', async (req, res) => {
     // console.log(post);
     await controller.createPost(post);
     res.redirect('/home');
-<<<<<<< HEAD
 });
 
 =======

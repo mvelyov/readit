@@ -2,7 +2,7 @@ const {
     tag,
     post,
     subreadit,
-} = require('../db/models');
+} = require('../../db/models');
 
 const Data = require('./generic.data');
 const UsersData = require('./users.data');

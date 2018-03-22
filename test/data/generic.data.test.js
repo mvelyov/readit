@@ -2,42 +2,41 @@ const {
     expect,
 } = require('chai');
 
-const {
-    sinon,
-} = require('sinon');
+// const {
+//     sinon,
+// } = require('sinon');
 
 const Data = require('../../app/data/generic.data');
 
 describe('Generic data', () => {
-
-    let data = null;
     let Model = null;
+    let data = null;
     // beforeEach(() => {
-        Model = {
-            findAll: () => {},
-            findById: (id) => {},
-            create: (object) => {},
-            findCreateFind: (columnName, value) => {},
-        }
-        data = new Data(Model);
-        
+    Model = {
+        findAll: () => {},
+        findById: (id) => {},
+        create: (object) => {},
+        findCreateFind: (columnName, value) => {},
+    }
+    data = new Data(Model);
+
     // })
 
     describe('getAll()', () => {
         describe('when valid', () => {
-            it ('when no data exists, expect to return empty array', async() => {
-                
+            it('when no data exists, expect to return empty array', async () => {
+
                 // sinon.stub(Model, 'findAll')
                 // .returns([]);
                 Model.findAll = () => {
                     return [];
                 };
-                
+
                 const objects = await data.getAll();
 
                 expect(objects).to.be.empty;
             })
-            it ('when object exists, expect to return the object', async() => {
+            it('when object exists, expect to return the object', async () => {
                 const object = ['test', 1, 2, 3]
 
                 // sinon.stub(Model, 'findAll')
@@ -45,21 +44,21 @@ describe('Generic data', () => {
                 Model.findAll = () => {
                     return object;
                 };
-                
 
-                const resultObjects = await data.getAll();
 
-                expect(resultObjects).deep.equal(object);
+                const resultObject = await data.getAll();
+
+                expect(resultObject).deep.equal(object);
             })
         })
         describe('when invalid', () => {
-            
+
         })
-   })
+    })
 
     describe('getById()', () => {
         describe('when valid', () => {
-            it ('existing id, expect to return the object', async() => {
+            it('existing id, expect to return the object', async () => {
                 const id = 1;
                 const object = {
                     id: 1,
@@ -93,22 +92,41 @@ describe('Generic data', () => {
     })
     describe('create()', () => {
         describe('when valid', () => {
-            const object = {
-                id: 'test',
-            }
+            it('when create and add object, expect to return the object', async () => {
+                const object = {
+                    id: 'test create',
+                }
 
-            Model.create(object)
+                Model.create = (object) => {
+                    return object;
+                }
+
+                const resultObject = await data.create(object);
+                expect(resultObject).deep.equal(object);
+            })
         })
         describe('when invalid', () => {
-            
+
         })
     })
     describe('findCreateFind()', () => {
         describe('when valid', () => {
-            
-        })
-        describe('when invalid', () => {
-            
+            it('when object doesnt exist, expect to create and return the object', async () => {
+                const columnName = 'id';
+                const value = 'test findCreateFind'
+                const object = {}
+                const test = {
+                    columnName: value,
+                }
+
+                Model.findCreateFind = (columnName, value) => {
+                    object.test = test;
+                    return object;
+                }
+
+                const resultObject = await data.findCreateFind(columnName, value);
+                expect(resultObject).to.be.equal(object);
+            })
         })
     })
 })

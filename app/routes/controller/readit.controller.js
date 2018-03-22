@@ -8,6 +8,25 @@ class ReadItController {
         return posts;
     }
 
+    async getPostsBySubreadit(subreaditNameOrId) {
+        let subreaditId = await this.data.subreadits.getAll({
+            where: {
+                name: subreaditNameOrId,
+            },
+        });
+        if (!isNaN(subreaditNameOrId)) {
+            subreaditId = subreaditNameOrId;
+        } else {
+            subreaditId = subreaditId.dataValues.id;
+        }
+        const posts = await this.data.posts.getAll({
+            where: {
+                subreaditId: subreaditId,
+            },
+        });
+        return posts;
+    }
+
     async getCreateData() {
         const [tags, subreadits] =
         await Promise.all([
@@ -74,7 +93,7 @@ class ReadItController {
 
     async createPost(postObject) {
         let userId = await this.data.users.findByUserName(postObject.user);
-        userId = userId.dataValues.id;
+        userId = userId.dataValues.id || postObject.userId;
         const tagIds = Array.isArray(postObject.tags) ?
             postObject.tags : [postObject.tags];
         postObject.userId = userId;

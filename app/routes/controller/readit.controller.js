@@ -8,20 +8,29 @@ class ReadItController {
         return posts;
     }
 
+    // async getPostsBySubreadit(subreaditNameOrId) {
+    //     let subreaditId = await this.data.subreadits.getByName(subreaditNameOrId);
+    //     // subreaditId = subreaditId.dataValues.id;
+    //     subreaditId = subreaditId.id;
+    //     // if (!isNaN(subreaditNameOrId)) {
+    //     //     subreaditId = subreaditNameOrId;
+    //     // } else {
+    //     //     subreaditId = subreaditId.dataValues.id;
+    //     // }
+    //     const posts = await this.data.posts.getAll({
+    //         where: {
+    //             subreaditId: subreaditId,
+    //         },
+    //     });
+    //     return posts;
+    // }
+
     async getPostsBySubreadit(subreaditNameOrId) {
-        let subreaditId = await this.data.subreadits.getByName(subreaditNameOrId);
-        // subreaditId = subreaditId.dataValues.id;
-        subreaditId = subreaditId.id;
-        // if (!isNaN(subreaditNameOrId)) {
-        //     subreaditId = subreaditNameOrId;
-        // } else {
-        //     subreaditId = subreaditId.dataValues.id;
-        // }
-        const posts = await this.data.posts.getAll({
-            where: {
-                subreaditId: subreaditId,
-            },
-        });
+        const {
+            id,
+        } = await this.data.subreadits.getByName(subreaditNameOrId);
+ 
+        const posts = await this.data.posts.getAllSubreadits(id);
         return posts;
     }
 
@@ -46,6 +55,7 @@ class ReadItController {
             userId,
             subreaditId,
             content,
+            id,
         } = post;
 
         const comments =
@@ -72,6 +82,7 @@ class ReadItController {
             tags,
             avatar,
             content,
+            id,
         };
     }
 

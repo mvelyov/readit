@@ -14,6 +14,14 @@ class Data {
             },
         });
     }
+    getAllSubreadits(id) {
+        return this.Model.findAll({
+                where: {
+                    subreaditId: id,
+                },
+        });
+    }
+   
 
     getById(id) {
         return this.Model.findById(id);

@@ -23,67 +23,70 @@ app.get('/home', async (req, res) => {
     res.render('home', model);
 });
 
-
-
-// app.get('/content/:id', (req, res) => {
-//     const id = req.params.id;
-//     const getpost = data.getPost(id);
-//     const post = getpost[0];
-//     const comentars = getpost[1];
-//     const model = {
-//         post,
-//         comentars,
-//     };
-//     res.render('content', model);
-// });
+app.get('/:category', async (req, res) => {
+    const category = req.params.category;
+    const listCategory = await controller.getPostsBySubreadit(category);
+    const model = {
+        listCategory,
+        //name: category,
+    };
+    // console.log('______________________________________');
+    // console.log(category);
+    // console.log('______________________________________');
+    res.render('category', model);
+});
+app.get('/content/:id', async (req, res) => {
+    const id = req.params.id;
+    const post = await controller.getInfo(id);
+    // const post = getpost[0];
+     const comentars = post.comments;
+     const tags = post.tags; 
+      
+     const model = {
+        // post,
+        comentars,
+        post,
+        tags,
+        id,
+    };
+    res.render('content', model);
+});
 
 app.get('/create/post', (req, res) => {
     // const model ={};
-    res.render('create/post');//, model);
+    res.render('create/post');// , model);
 });
 
 app.post('/home', async (req, res) => {
     const post = req.body;
-    
+
     post.subreaditId = +post.subreaditId;
     post.tags = [+post.tags];
     console.log(post);
     await controller.createPost(post);
     res.redirect('/home');
+});
 
+
+
+app.post('/content/:id', async (req, res) => {
+    //const id = req.params.id;
+    const coment = req.body;
+    coment.postId = +coment.postId;
+    coment.userId = +coment.userId;
+    console.log(coment);
     
+    const id = coment.postId;
+    await controller.createNewComment(coment);
+    // const getpost = data.getPost(id);
+    // const post = getpost[0];
+    // const comentars = getpost[1];
+    // const model = {
+    //     post,
+    //     comentars,
+    // };
+    // res.render('content', model);
+    res.redirect('/content/'+id);
 });
-
-app.get('/home/cat', async (req, res) => {
-    //const category = req.params.category;
-// console.log('----------------------');
-// console.log(category);
-// console.log('----------------------');
-    const listCategory = await controller.getPostsBySubreadit('cat');
- console.log('----------------------');
-console.log(listCategory);
-console.log('----------------------');
-    const model = {
-        listCategory,
-    };
-
-    res.render('category', model);
-});
-
-// app.post('/content/:id', (req, res) => {
-//     //const id = req.params.id;
-//     const coment = req.body;
-//     const id = +coment.id;
-//     data.createComentars(coment);
-//     // const getpost = data.getPost(id);
-//     // const post = getpost[0];
-//     // const comentars = getpost[1];
-//     // const model = {
-//     //     post,
-//     //     comentars,
-//     // };
-//     // res.render('content', model);
-//     res.redirect('/content/'+id);
-// });
 
 app.listen(3001);

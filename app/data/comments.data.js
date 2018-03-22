@@ -2,7 +2,7 @@ const Data = require('./generic.data');
 
 const {
     comment,
-} = require('../db/models');
+} = require('../../db/models');
 
 class CommentsData extends Data {
     constructor() {

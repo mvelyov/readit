@@ -2,7 +2,7 @@ const Data = require('./generic.data');
 
 const {
     user,
-} = require('../db/models');
+} = require('../../db/models');
 
 class UsersData extends Data {
     constructor() {

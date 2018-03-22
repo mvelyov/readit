@@ -15,8 +15,9 @@ describe('Generic data', () => {
     // beforeEach(() => {
         Model = {
             findAll: () => {},
-            findById: (id) => [],
-            create: (object) => [],
+            findById: (id) => {},
+            create: (object) => {},
+            findCreateFind: (columnName, value) => {},
         }
         data = new Data(Model);
         
@@ -91,6 +92,18 @@ describe('Generic data', () => {
         })
     })
     describe('create()', () => {
+        describe('when valid', () => {
+            const object = {
+                id: 'test',
+            }
+
+            Model.create(object)
+        })
+        describe('when invalid', () => {
+            
+        })
+    })
+    describe('findCreateFind()', () => {
         describe('when valid', () => {
             
         })

@@ -1,0 +1,15 @@
+extends ./_shared/master
+
+block content
+    ul
+        each post in postsLists
+            li
+                a(href="http:/content/"+ post.id)
+                    p
+                        =post.image
+                    p
+                        =post.name
+
+    p
+        a(href="http:/create/post/")           
+            | Create

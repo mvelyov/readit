@@ -1,0 +1,27 @@
+extends ../_shared/master
+
+block content
+
+    h1
+        | This is create
+    form(action="/home", method="post")
+        div
+            | Title :
+            input(type="text", name="name")
+        div
+            | Image :
+            input(type="text", name = 'image')
+        div
+            input(type="radio", name="subreaditId", value=1)
+            | Cat    
+            input(type="radio", name="subreaditId", value=2)
+            | Dog
+            input(type="radio", name="subreaditId", value=3)
+            | Avengers
+        div 
+            input(type="text", name="userId")    
+        div
+            textarea(name="content", cols="30", rows="10")
+        div
+            button(type="submit")
+                | Submit

@@ -23,15 +23,7 @@ app.get('/home', async (req, res) => {
     res.render('home', model);
 });
 
-app.get('/:category', (req, res) => {
-    const category = req.params.category;
-    const listCategory = data.getCategory(category);
-    const model = {
-        listCategory,
-    };
 
-    res.render('category', model);
-});
 
 // app.get('/content/:id', (req, res) => {
 //     const id = req.params.id;
@@ -58,6 +50,24 @@ app.post('/home', async (req, res) => {
     console.log(post);
     await controller.createPost(post);
     res.redirect('/home');
+
+    
+});
+
+app.get('/home/cat', async (req, res) => {
+    //const category = req.params.category;
+// console.log('----------------------');
+// console.log(category);
+// console.log('----------------------');
+    const listCategory = await controller.getPostsBySubreadit('cat');
+ console.log('----------------------');
+console.log(listCategory);
+console.log('----------------------');
+    const model = {
+        listCategory,
+    };
+
+    res.render('category', model);
 });
 
 // app.post('/content/:id', (req, res) => {

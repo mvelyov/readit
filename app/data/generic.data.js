@@ -7,6 +7,14 @@ class Data {
         return this.Model.findAll();
     }
 
+    getByName(value) {
+        return this.Model.findOne({
+            where: {
+                name: value,
+            },
+        });
+    }
+
     getById(id) {
         return this.Model.findById(id);
     }

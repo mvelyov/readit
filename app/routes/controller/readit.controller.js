@@ -9,16 +9,14 @@ class ReadItController {
     }
 
     async getPostsBySubreadit(subreaditNameOrId) {
-        let subreaditId = await this.data.subreadits.getAll({
-            where: {
-                name: subreaditNameOrId,
-            },
-        });
-        if (!isNaN(subreaditNameOrId)) {
-            subreaditId = subreaditNameOrId;
-        } else {
-            subreaditId = subreaditId.dataValues.id;
-        }
+        let subreaditId = await this.data.subreadits.getByName(subreaditNameOrId);
+        // subreaditId = subreaditId.dataValues.id;
+        subreaditId = subreaditId.id;
+        // if (!isNaN(subreaditNameOrId)) {
+        //     subreaditId = subreaditNameOrId;
+        // } else {
+        //     subreaditId = subreaditId.dataValues.id;
+        // }
         const posts = await this.data.posts.getAll({
             where: {
                 subreaditId: subreaditId,

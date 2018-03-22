@@ -1,0 +1,12 @@
+extends ./_shared/master
+
+block content 
+    
+    ul
+        each post in listCategory
+            li
+                a(href="http:/content/"+ post.id)
+                    p
+                        =post.image
+                    p
+                        =post.name

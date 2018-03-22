@@ -23,15 +23,15 @@ app.get('/home', async (req, res) => {
     res.render('home', model);
 });
 
-// app.get('/:category', (req, res) => {
-//     const category = req.params.category;
-//     const listCategory = data.getCategory(category);
-//     const model = {
-//         listCategory,
-//     };
+app.get('/:category', (req, res) => {
+    const category = req.params.category;
+    const listCategory = data.getCategory(category);
+    const model = {
+        listCategory,
+    };
 
-//     res.render('category', model);
-// });
+    res.render('category', model);
+});
 
 // app.get('/content/:id', (req, res) => {
 //     const id = req.params.id;
@@ -52,10 +52,10 @@ app.get('/create/post', (req, res) => {
 
 app.post('/home', async (req, res) => {
     const post = req.body;
-    post.userId = +post.userId;
+    
     post.subreaditId = +post.subreaditId;
+    post.tags = [+post.tags];
     console.log(post);
-    post.tags = [1, 2, 3];
     await controller.createPost(post);
     res.redirect('/home');
 });

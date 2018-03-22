@@ -28,6 +28,7 @@ class ReadItController {
             name,
             userId,
             subreaditId,
+            content,
         } = post;
 
         const comments =
@@ -53,6 +54,7 @@ class ReadItController {
             subreaditName,
             tags,
             avatar,
+            content,
         };
     }
 

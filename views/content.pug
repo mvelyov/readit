@@ -5,7 +5,7 @@ block content
         | #{post.name}
 
     p
-        | #{post.image} 
+        img(src="#{post.image}")
     p
         | #{post.subreaditName}
     
@@ -18,7 +18,7 @@ block content
     p
         | #{post.userName}
     p
-        | #{post.avatar}
+        img(src="#{post.avatar}") 
     p
         | #{post.content}
 

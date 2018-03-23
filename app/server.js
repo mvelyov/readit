@@ -24,21 +24,21 @@ app.get('/home', async (req, res) => {
 });
 
 
-app.get('/:category', async (req, res) => {
+app.get('/home/:category', async (req, res) => {
     const category = req.params.category;
     const listCategory = await controller.getPostsBySubreadit(category);
     const model = {
         listCategory,
         //name: category,
     };
-    // console.log('______________________________________');
-    // console.log(category);
-    // console.log('______________________________________');
-    res.render('category', model);
+    console.log('______________________________________');
+    console.log(listCategory);
+    console.log('______________________________________');
+    res.render('home/category', model);
 });
 app.get('/content/:id', async (req, res) => {
     const id = req.params.id;
-    const post = await controller.getInfo(id);
+    const post = await controller.getInfo(+id);
     // const post = getpost[0];
      const comentars = post.comments;
      const tags = post.tags; 
@@ -67,15 +67,6 @@ app.post('/home', async (req, res) => {
     await controller.createPost(post);
     res.redirect('/home');
 });
-
-
-
-
-
-
-
-
-
 
 app.post('/content/:id', async (req, res) => {
     //const id = req.params.id;

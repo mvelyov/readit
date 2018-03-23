@@ -1,10 +1,11 @@
 {
     "development": {
         "username": "root",
-        "password": null,
+        "password": "344877",
         "database": "readitdb",
         "host": "127.0.0.1",
-        "dialect": "mysql"
+        "dialect": "mysql",
+        "operatorsAliases": "Sequelize.Op"
     },
     "test": {
         "username": "root",

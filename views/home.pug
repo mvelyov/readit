@@ -4,12 +4,12 @@ block content
     ul
         each post in postsLists
             li
-                a(href="http:/content/"+ post.id)
+                a(href="/content/"+ post.id)
                     p
                         img(src=post.image)
                     p
                         =post.name
 
     p
-        a(href="http:/create/post/")           
+        a(href="/create/post/")
             | Create

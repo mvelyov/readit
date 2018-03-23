@@ -183,7 +183,7 @@
                 "avatar": {
                     "allowNull": false,
                     "defaultValue": {
-                        "value": "http://files.softicons.com/download/tv-movie-icons/iron-man-icon-set-by-svengraph/ico/Classic_Helmet.ico"
+                        "value": "http://www.softicons.com/tv-movie-icons/iron2man-helmet-icons-by-svengraph"
                     },
                     "validate": {
                         "isUrl": true
@@ -236,5 +236,5 @@
             "indexes": []
         }
     },
-    "revision": 2
+    "revision": 1
 }

@@ -29,17 +29,7 @@ class ReadItController {
         const {
             id,
         } = await this.data.subreadits.getByName(subreaditNameOrId);
-<<<<<<< HEAD
  
-=======
-        // subreaditId = subreaditId.dataValues.id;
-        // const subreaditId = id;
-        // if (!isNaN(subreaditNameOrId)) {
-        //     subreaditId = subreaditNameOrId;
-        // } else {
-        //     subreaditId = subreaditId.dataValues.id;
-        // }
->>>>>>> 83fcb3a4cb115eb68890173547ab2c3ab0b7ed07
         const posts = await this.data.posts.getAllSubreadits(id);
         return posts;
     }

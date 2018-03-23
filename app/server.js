@@ -23,7 +23,7 @@ app.get('/home', async (req, res) => {
     res.render('home', model);
 });
 
-<<<<<<< HEAD
+
 app.get('/:category', async (req, res) => {
     const category = req.params.category;
     const listCategory = await controller.getPostsBySubreadit(category);
@@ -56,19 +56,6 @@ app.get('/content/:id', async (req, res) => {
 app.get('/create/post', (req, res) => {
     // const model ={};
     res.render('create/post');// , model);
-=======
-// app.get('/content/:id', (req, res) => {
-//     const id = req.params.id;
-//     const getpost = data.getPost(id);
-//     const post = getpost[0];
-//     const comentars = getpost[1];
-//     const model = {
-//         post,
-//         comentars,
-//     };
-//     res.render('content', model);
-// });
-
 });
 
 app.post('/home', async (req, res) => {
@@ -81,26 +68,13 @@ app.post('/home', async (req, res) => {
     res.redirect('/home');
 });
 
-=======
 
 
-});
 
-app.get('/home/:category', async (req, res) => {
-    const {
-        category,
-    } = req.params;
-    // console.log('----------------------');
-    // console.log(obj);
-    // console.log('----------------------');
-    const listCategory = (await controller.getPostsBySubreadit(category)).map((item) => item.dataValues.content);
-    // console.log('----------------------');
-    // console.log(listCategory);
-    // console.log('----------------------');
-    const model = {
-        listCategory,
-    };
->>>>>>> 83fcb3a4cb115eb68890173547ab2c3ab0b7ed07
+
+
+
+
 
 
 app.post('/content/:id', async (req, res) => {

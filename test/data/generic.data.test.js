@@ -2,32 +2,25 @@ const {
     expect,
 } = require('chai');
 
-// const {
-//     sinon,
-// } = require('sinon');
-
 const Data = require('../../app/data/generic.data');
 
 describe('Generic data', () => {
     let Model = null;
     let data = null;
-    // beforeEach(() => {
     Model = {
         findAll: () => {},
         findById: (id) => {},
+        findOne: (name) => {},
         create: (object) => {},
         findCreateFind: (columnName, value) => {},
     }
     data = new Data(Model);
 
-    // })
 
     describe('getAll()', () => {
         describe('when valid', () => {
             it('when no data exists, expect to return empty array', async () => {
 
-                // sinon.stub(Model, 'findAll')
-                // .returns([]);
                 Model.findAll = () => {
                     return [];
                 };
@@ -39,8 +32,6 @@ describe('Generic data', () => {
             it('when object exists, expect to return the object', async () => {
                 const object = ['test', 1, 2, 3]
 
-                // sinon.stub(Model, 'findAll')
-                // .returns(objects);
                 Model.findAll = () => {
                     return object;
                 };
@@ -51,11 +42,55 @@ describe('Generic data', () => {
                 expect(resultObject).deep.equal(object);
             })
         })
-        describe('when invalid', () => {
+    })
+    describe('getByName()', () => {
+        describe('when valid', () => {
+            it('existing name, expect to return the object', async () => {
+                const name = 'test name';
+                const object = {
+                    name,
+                };
 
+                Model.findOne = (name) => {
+                    return object;
+                };
+
+                const resultObject = await data.getByName(name);
+
+                expect(resultObject).to.exist;
+                expect(resultObject.name).to.equal(name);
+            })
+        })
+        describe('when invalid', () => {
+            it('non-existing name, expect to return null', async () => {
+                Model.findOne = (name) => {
+                    return null;
+                };
+
+                const resultObject = await data.getByName('test name');
+
+                expect(resultObject).to.be.null;
+            })
         })
     })
+    describe('getAllSubreadits()', () => {
+        describe('when valid', () => {
+            it('existing id, expect to return the object', async () => {
+                const id = ['subreadit1' , 'subreadit2'];
+                const object = {
+                    id,
+                };
 
+                Model.findAll = (id) => {
+                    return object;
+                };
+
+                const resultObject = await data.getAllSubreadits(id);
+
+                expect(resultObject).to.equal(object);
+            })
+        })
+    })
     describe('getById()', () => {
         describe('when valid', () => {
             it('existing id, expect to return the object', async () => {
@@ -64,8 +99,6 @@ describe('Generic data', () => {
                     id: 1,
                 };
 
-                // sinon.stub(Model, 'findById')
-                // .returns(object)
                 Model.findById = (id) => {
                     return object;
                 };
@@ -78,8 +111,6 @@ describe('Generic data', () => {
         })
         describe('when invalid', () => {
             it('non-existing id, expect to return null', async () => {
-                // sinon.stub(Model, 'findById')
-                // .returns(null);
                 Model.findById = (id) => {
                     return null;
                 };

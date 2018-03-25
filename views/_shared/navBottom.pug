@@ -1,0 +1,33 @@
+mixin navBottom()
+    nav.main-nav
+        ul
+            li
+                a(href="/home/all/new")
+                    | New
+            li
+                a(href="/home/all/old")
+                    | old
+            li
+                a(href="/home/all/hotest")
+                    | hotest
+            li
+                a(href="/home/all/coldest")
+                    | coldest
+            if user
+                =user.username
+                a(href="/logout")
+                    | Log out
+            else
+            li
+                ul 
+                    form(action="/home", method="post")
+                    li
+                        input(type="text", name="user")
+                    li
+                        input(type="password", name ='password')
+                    li
+                        a(href="/login")
+                            | Log in
+                    li
+                        a(href="/register")
+                            | Register

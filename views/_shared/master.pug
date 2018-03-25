@@ -1,4 +1,6 @@
 include ./nav
+include ./header
+include ./navBottom
 
 <!DOCTYPE html>
 html(lang="en")
@@ -13,7 +15,9 @@ html(lang="en")
         block head_scripts
     body
         +nav()
-        //- +bottomNav()
-        //- +header()
+    
+        +header()
+
+        +navBottom()
         block content
         //- +footer()

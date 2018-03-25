@@ -29,7 +29,6 @@ class Data {
                 },
         });
     }
-   
 
     getById(id) {
         return this.Model.findById(id);

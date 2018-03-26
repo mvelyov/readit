@@ -18,7 +18,7 @@ describe('Users Data', () => {
             super(user)
         };
         findByUserName(username){
-            return Model;
+            return Model.findOne();
         }
     }
 
@@ -26,21 +26,18 @@ describe('Users Data', () => {
 
     describe('findByUserName()', () => {
         it('when user exists, expect to return the user', async() => {
-            const userObject = {};
-            const columnName = 'userName';
             const userName = 'test user';
             const user = {
-                columnName: userName,
+                'username': userName,
             }
 
             Model.findOne = () => {
-                userObject.userName = userName;
-                return userObject;
+                return user;
             }
 
             const resultObject = await data.findByUserName(userName);
 
-            expect(resultObject).to.be.equal(Model);
+            expect(resultObject).to.be.equal(user);
         })
         it('when user doesnt exist, expect to return null', async() => {
             username = null;
@@ -51,7 +48,7 @@ describe('Users Data', () => {
             
             const resultObject = await data.findByUserName('test')
 
-            expect(resultObject).to.be.equal(Model);
+            expect(resultObject).to.be.equal(username);
         })
     })
 })

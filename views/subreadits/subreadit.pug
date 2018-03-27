@@ -1,0 +1,12 @@
+extends ../_shared/master
+
+block content
+    a.btn.btn-primary(href="/r/" + subreadit + '/create') Create a new Post
+    ul
+        each post in posts
+            li
+                div
+                    a(href=subreadit + "/post/" + post.id) #{post.name}
+                    img.img-thumbnail.img-responsive(src=post.image)
+                    =post.userName
+                    =post.commentsCount

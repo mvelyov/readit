@@ -1,0 +1,19 @@
+extends ../_shared/master
+
+block content
+
+    form.form-row(action="/user/register", method="post")
+        div.col
+            label(for="userName")
+                | User Name:
+            input#userName.form-control(type='text', name='userName', placeholder='User Name')
+        div.col
+            label(for="password")
+                | Password:
+            input#password.form-control(type='password', name='password', placeholder='Password')
+        div.col
+            label(for="avatar")
+                | Avatar:
+            input#avatar(type="url", name="avatar")
+        div.col
+            input(type="submit", value="Register")

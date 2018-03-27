@@ -2,14 +2,11 @@ extends ./_shared/master
 
 block content
     ul
-        each post in postsLists
-            li
-                a(href="/content/"+ post.id)
-                    p
-                        img(src=post.image)
-                    p
-                        =post.name
+        each post in postsLists.posts
+            li 
+                img(src=post.image)
+                =post.userName
+                a(href='/r/' + post.subreaditName + '/post/' + post.id) #{post.name}
+                a(href='/r/' + post.subreaditName) #{post.subreaditName}
+                =post.commentsCount
 
-    p
-        a(href="/create/post/")
-            | Create

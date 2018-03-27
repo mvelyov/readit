@@ -1,15 +1,22 @@
 mixin nav()
-    nav
-        ul
-            li
-                a(href="/home")
-                    | Home
-            li
-                a(href="/home/Cats")
-                    | Cat
-            li
-                a(href="/home/Dogs")
-                    | Dog
-            li
-                a(href="/home/Avengers")
-                    | Avengers
+    nav.navbar.navbar-inverse.justify-content-between
+        .container-fluid
+            .navbar-header
+                a.navbar-brand(href='/') Readit
+            ul.nav.navbar-nav
+                if subreadits
+                    each subreadit in subreadits
+                        li
+                            a(href="/r/" + subreadit.dataValues.name )
+                                | #{subreadit.dataValues.name}
+            ul.nav.navbar-nav.navbar-right
+                if user
+                    li
+                        a(href="/user/" + user.userName) #{user.userName}
+                    li
+                        a(href="/user/logout") Log-out
+                else
+                    li
+                        a(href="/user/login") Log-in
+                    li
+                        a(href="/user/register") Register

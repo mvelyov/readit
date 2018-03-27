@@ -1,0 +1,26 @@
+extends ../_shared/master
+
+block content
+    img(src=avatar)
+    ul
+        li
+            | Your username id: #{id}
+        li
+            | Your username: #{userName}
+        if comments
+            each comment in comments
+                li
+                    =comment.dataValues.content
+                    =comment.dataValues.createdAt
+            else
+                li
+                    | No comments yet :(
+        if posts
+            each post in posts
+                li
+                    =post.dataValues.name
+                    =post.dataValues.content
+                    =post.dataValues.createdAt
+            else
+                li
+                    | No posts yet :(

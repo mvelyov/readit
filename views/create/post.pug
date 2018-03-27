@@ -3,29 +3,29 @@ extends ../_shared/master
 block content
 
     h1
-        | This is create
-    form(action="/home", method="post")
-        div
-            | Title :
-            input(type="text", name="name")
-        div
-            | Image :
-            input(type="text", name = 'image')
-        div
-            input(type="radio", name="subreaditId", value=1)
-            | Cat    
-            input(type="radio", name="subreaditId", value=2)
-            | Dog
-            input(type="radio", name="subreaditId", value=3)
-            | Avengers
-        div 
-            | UserId
-            input(type="text", name="user")
-        div 
-            | Tags
-            input(type="text", name="tags")    
-        div
-            textarea(name="content", cols="30", rows="10")
-        div
-            button(type="submit")
-                | Submit
+        | Create a new post in #{subreadit}!
+    form(action="/r/" + subreadit, method="post")
+        div.form-group
+            label(for="title") Title
+            input(type="text", name="name", id="title", class="form-control")
+        div.form-group
+            label(for="image") Image
+            input(type="url", name ='image', id="image", class="form-control")
+        div.form-group
+            label(for="subreaditSelect") Subreadits
+            select#subreaditSelect.select.form-control.input-md(name="subreaditId")
+                each subrdt in subreadits
+                    if subrdt.name == subreadit
+                        option(value=subrdt.id, selected= true) #{subrdt.name}
+                    else
+                        option(value=subrdt.id) #{subrdt.name}
+        div.form-group
+            label(for="tags") Tags
+            select#tags.selectpicker.multiple(name="tagsId", multiple)&attributes({'data-live-search': 'true'})
+                each tag in tags
+                    option(value=tag.id, data-id=tag.id) #{tag.name}
+        div.form-group
+            label(for="content")
+            textarea#content(name="content", cols="30", rows="10")
+        div.form-group
+            button.btn.btn-primary(type="submit") Submit

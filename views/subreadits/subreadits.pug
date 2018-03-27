@@ -1,0 +1,7 @@
+extends ../_shared/master
+
+block content
+    ul
+        each subreadit in subreadits
+            a(href="/r/" + subreadit.dataValues.name)
+                p /r/#{subreadit.dataValues.name}

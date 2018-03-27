@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     avatar: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: 'http://files.softicons.com/download/tv-movie-icons/iron-man-icon-set-by-svengraph/ico/Classic_Helmet.ico',
+      defaultValue: 'https://pbs.twimg.com/profile_images/624586699423612928/sWvLOJXY_400x400.jpg',
       validate: {
         isUrl: true,
       },

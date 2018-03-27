@@ -116,6 +116,16 @@
                     "allowNull": false,
                     "seqType": "Sequelize.STRING"
                 },
+                "headerImage": {
+                    "allowNull": false,
+                    "defaultValue": {
+                        "value": "https://www.freewebheaders.com/wordpress/wp-content/gallery/other-backgrounds/red-lonely-chair-website-header-design.jpg"
+                    },
+                    "validate": {
+                        "isUrl": true
+                    },
+                    "seqType": "Sequelize.STRING"
+                },
                 "createdAt": {
                     "allowNull": false,
                     "seqType": "Sequelize.DATE"
@@ -138,7 +148,6 @@
                 },
                 "name": {
                     "unique": true,
-                    "allowNull": false,
                     "seqType": "Sequelize.STRING"
                 },
                 "createdAt": {
@@ -183,7 +192,7 @@
                 "avatar": {
                     "allowNull": false,
                     "defaultValue": {
-                        "value": "http://files.softicons.com/download/tv-movie-icons/iron-man-icon-set-by-svengraph/ico/Classic_Helmet.ico"
+                        "value": "https://pbs.twimg.com/profile_images/624586699423612928/sWvLOJXY_400x400.jpg"
                     },
                     "validate": {
                         "isUrl": true
@@ -236,5 +245,5 @@
             "indexes": []
         }
     },
-    "revision": 2
+    "revision": 4
 }

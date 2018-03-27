@@ -1,0 +1,11 @@
+extends ../_shared/master
+
+block content
+
+    form.form-row(action="/user/login", method="post")
+        div.col
+            input.form-control(type='text', name='username')
+        div.col
+            input.form-control(type='password', name='password')
+        div.col
+            input(type="submit", value="Log in")

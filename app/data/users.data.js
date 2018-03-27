@@ -10,11 +10,12 @@ class UsersData extends Data {
     }
 
     findByUserName(username) {
-        return this.Model.findOne({
+        const currentUser = this.Model.findOne({
             where: {
                 userName: username,
             },
         });
+        return currentUser;
     }
 }
 

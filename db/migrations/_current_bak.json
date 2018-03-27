@@ -116,6 +116,16 @@
                     "allowNull": false,
                     "seqType": "Sequelize.STRING"
                 },
+                "headerImage": {
+                    "allowNull": false,
+                    "defaultValue": {
+                        "value": "https://www.freewebheaders.com/wordpress/wp-content/gallery/other-backgrounds/red-lonely-chair-website-header-design.jpg"
+                    },
+                    "validate": {
+                        "isUrl": true
+                    },
+                    "seqType": "Sequelize.STRING"
+                },
                 "createdAt": {
                     "allowNull": false,
                     "seqType": "Sequelize.DATE"
@@ -183,7 +193,7 @@
                 "avatar": {
                     "allowNull": false,
                     "defaultValue": {
-                        "value": "http://www.softicons.com/tv-movie-icons/iron2man-helmet-icons-by-svengraph"
+                        "value": "http://files.softicons.com/download/tv-movie-icons/iron-man-icon-set-by-svengraph/ico/Classic_Helmet.ico"
                     },
                     "validate": {
                         "isUrl": true
@@ -236,5 +246,5 @@
             "indexes": []
         }
     },
-    "revision": 1
+    "revision": 3
 }

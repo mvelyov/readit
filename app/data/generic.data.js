@@ -7,26 +7,11 @@ class Data {
         return this.Model.findAll();
     }
 
-    getAllSubreadits(id) {
-        return this.Model.findAll({
-                where: {
-                    subreaditId: id,
-                },
-        });
-    }
-
     getByName(value) {
         return this.Model.findOne({
             where: {
                 name: value,
             },
-        });
-    }
-    getAllSubreadits(id) {
-        return this.Model.findAll({
-                where: {
-                    subreaditId: id,
-                },
         });
     }
 

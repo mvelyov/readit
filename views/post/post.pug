@@ -1,0 +1,53 @@
+extends ../_shared/master
+
+block content
+    h1
+        | #{postInfo.name}
+
+    p
+        img(src=postInfo.image)
+    p
+        | #{postInfo.subreaditName}
+    
+    p
+        div.row
+            ul
+                each tag in postInfo.tags
+                    li
+                        =tag
+    p
+        | #{postInfo.userName}
+    p
+        img(src=postInfo.avatar) 
+    p
+        | #{postInfo.content}
+
+    h2 Comments:
+    div
+        ul
+            each comment in postInfo.comments
+                li
+                    div
+                        img(src=comment.userAvatar)
+                        a(href="/user/" + comment.userName) #{comment.userName}
+                        p
+                            =comment.content
+                        p
+                            =comment.createdAt
+
+    h2
+        | Add a comment
+    if authenticated
+        p
+            form(action="/r/" + postInfo.subreaditName + "/post/" + postInfo.id, method="post")
+                div
+                textarea(name="content", cols="30", rows="10")
+                div
+                    button(type="submit")
+                        | Submit
+    else
+        p
+            | You need to be logged in to be able to leave a comment
+        div
+            a(href="/user/login") Log In
+            a(href="/user/register")    Register

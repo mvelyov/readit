@@ -19,10 +19,10 @@ describe('Comments Data', () => {
             super(comment);
         }
         getCommentsOnPost(postId) {
-            return Model;
+            return Model.findAll();
         };
         getCommentsForEachUser(userId) {
-            return Model;
+            return Model.findAll();
         }
     }
 
@@ -38,7 +38,7 @@ describe('Comments Data', () => {
             }
 
             const resultObject = await data.getCommentsOnPost(postId);
-            expect(resultObject).to.be.equal(Model);
+            expect(resultObject).to.be.equal(comments);
         })
         it('when comments dont exist, expect to return null', async () => {
             const postId = 1;
@@ -49,7 +49,7 @@ describe('Comments Data', () => {
             }
 
             const resultObject = await data.getCommentsOnPost(postId);
-            expect(resultObject).to.be.equal(Model);
+            expect(resultObject).to.be.equal(comments);
         })
     })
     describe('getCommentsForEachUser()', () => {
@@ -62,7 +62,7 @@ describe('Comments Data', () => {
             }
 
             const resultObject = await data.getCommentsForEachUser(userId);
-            expect(resultObject).to.be.equal(Model);
+            expect(resultObject).to.be.equal(commentsFromUser);
         })
     })
 })

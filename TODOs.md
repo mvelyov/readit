@@ -12,7 +12,7 @@ NICE CHANGE BUT WE CAN GO WITHOUT IT / Хубава промяна, но мож�
 --------------
 4 - If there is time / Ако остане време
 #### STATUSES:
-1. Complete / Завършено
+1. Completed / Завършено
 2. In Progress / Работи се по него.
 3. Not started / Не е започнато.
 4. Abandoned / Изоставено.
@@ -53,8 +53,8 @@ NICE CHANGE BUT WE CAN GO WITHOUT IT / Хубава промяна, но мож�
 ####    **Importance: 1**
         As it is a requirement for the project this must be done.
         Тъй като това е задължително изискване за проекта, то трябва да се направи.
-#####    **WHO IS WORKING ON IT / КОЙ ЩЕ РАБОТИ НАД ТОВА:**
-#####   **STATUS:**
+#####    **WHO IS WORKING ON IT / КОЙ ЩЕ РАБОТИ НАД ТОВА:** -----> Mario
+#####   **STATUS:** -----> Completed
 
 
 ###     **4.Create DELETE routes for comments and posts**

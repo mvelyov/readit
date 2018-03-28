@@ -18,8 +18,8 @@ NICE CHANGE BUT WE CAN GO WITHOUT IT / Хубава промяна, но мож�
 4. Abandoned / Изоставено.
 
 
-#**ToDos:**
-##**Routes and Controllers:**
+# **ToDos:**
+## **Routes and Controllers:**
 ###    **1. validate the form data with express-validator / да се валидира информацията от формата преди да се прати към базата**
 ####    **Importance: 1**.
         - not to allow fields that cannot be empty to remain empty / да не се позволява на полета, които не могат да бъдат
@@ -105,7 +105,7 @@ NICE CHANGE BUT WE CAN GO WITHOUT IT / Хубава промяна, но мож�
 More may be added soon...
 
 
-##**Front-end / Client Side**
+## **Front-end / Client Side**
     **Note/Забележка: В тази част имаме най-много работа и трябва да се свърши с преоритет!**
 
 ###     **1. Use AJAX for POST/PUT/DELETE requests for creating/deleting/amending comments and posts**
@@ -150,7 +150,7 @@ More may be added soon...
 #####   **STATUS:**
 
 
-##**TESTING:**
+## **TESTING:**
     **Note/Забележка: тук се слага само 1 задача, но тя е доста мащабна и е задължителна**
 ###     **1. Implement testing for 50% of the application**
         Имплементиране на тестове за 50% от апликцаията
@@ -160,7 +160,7 @@ More may be added soon...
 #####   **STATUS:**
 
 
-##**GENERAL APP/PROJECT WORK**
+## **GENERAL APP/PROJECT WORK**
 ###     **1. Deploy the app on the net via HEROKU**
 ###     **2. Create a MarkDown for documentationo of the app**
 #####    **WHO IS WORKING ON IT / КОЙ ЩЕ РАБОТИ НАД ТОВА:**

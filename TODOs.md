@@ -1,4 +1,4 @@
-####IMPORTANCE LEGEND:
+#### IMPORTANCE LEGEND:
 MUST BE DONE / ТРЯБВА ДА СЕ НАПРАВЯТ
 ---------------
 1 - necessary / Необходимо
@@ -11,7 +11,7 @@ SHOULD BE DONE / Би било хубаво да се направят
 NICE CHANGE BUT WE CAN GO WITHOUT IT / Хубава промяна, но може и без нея
 --------------
 4 - If there is time / Ако остане време
-####STATUSES:
+#### STATUSES:
 1. Complete / Завършено
 2. In Progress / Работи се по него.
 3. Not started / Не е започнато.

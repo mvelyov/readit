@@ -1,47 +1,34 @@
 extends ../_shared/master
 
 block content
-    h1
-        | #{postInfo.name}
 
-    p
-        img(src=postInfo.image)
-    p
-        | #{postInfo.subreaditName}
-    
-    p
-        div.row
-            ul
-                each tag in postInfo.tags
-                    li
-                        =tag
-    p
-        | #{postInfo.userName}
-    p
-        img(src=postInfo.avatar) 
-    p
-        | #{postInfo.content}
-
-    h2 Comments:
-    div
-        ul
-            each comment in postInfo.comments
-                li
-                    div
-                        img(src=comment.userAvatar)
-                        a(href="/user/" + comment.userName) #{comment.userName}
-                        p
-                            =comment.content
-                        p
-                            =comment.createdAt
-
-    h2
+    .media
+        .media-left
+            a(href=postInfo.image)
+                img.media-object.postImage(src=postInfo.image, alt="")
+        .media-body
+            h2.media-heading #{postInfo.name}
+            p #{postInfo.content}
+            span 
+                | In    
+                a(href="/r/" + postInfo.subreaditName) r/#{postInfo.subreaditName}
+                |   By  
+                a(href="/user/" + postInfo.userName) #{postInfo.userName} 
+                    img.smallAvatar(src=postInfo.avatar, alt="")
+            .tags
+                ul
+                    |Tags: 
+                    each tag in postInfo.tags
+                        li
+                            | #{tag} 
+    hr
+    h3
         | Add a comment
     if authenticated
         p
             form(action="/r/" + postInfo.subreaditName + "/post/" + postInfo.id, method="post")
                 div
-                textarea(name="content", cols="30", rows="10")
+                textarea(name="content", cols="50", rows="5")
                 div
                     button(type="submit")
                         | Submit
@@ -51,3 +38,24 @@ block content
         div
             a(href="/user/login") Log In
             a(href="/user/register")    Register
+    h3 All comments:
+    each comment in postInfo.comments
+        .media
+            .media-left
+                a(href="#")
+                    img.media-object.mediumAvatar.img-circle(src=comment.userAvatar, alt="")
+            .media-body.commentBody
+                a.media-heading.commentUser(href="/user/" + comment.userName) #{comment.userName}
+                p.commentContent #{comment.content}
+                p.commentCreatedAt #{comment.createdAt}
+    //- div
+    //-     ul
+    //-         each comment in postInfo.comments
+    //-             li
+    //-                 div
+    //-                     img(src=comment.userAvatar)
+    //-                     a(href="/user/" + comment.userName) #{comment.userName}
+    //-                     p
+    //-                         =comment.content
+    //-                     p
+    //-                         =comment.createdAt

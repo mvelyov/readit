@@ -1,5 +1,5 @@
 const postRoutes = require('./post.routes');
-const apiRoutes = require('./api.post.routes')
+const apiRoutes = require('./api.post.routes');
 
 const init = (app, data) => {
     postRoutes.init(app, data);

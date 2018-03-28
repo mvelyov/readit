@@ -30,7 +30,7 @@ const init = (app, data) => {
         })
         .get('/r/:subreadit/newest', async (req, res) => {
             const subreadit = req.params.subreadit;
-            const posts = controller.sortSubreaditPostsByAge('ASC', subreadit);
+            const posts = controller.sortSubreaditPostsByAge('DESC', subreadit);
             const model = {
                 subreadit,
                 posts,
@@ -39,7 +39,7 @@ const init = (app, data) => {
         })
         .get('/r/:subreadit/oldest', async (req, res) => {
             const subreadit = req.params.subreadit;
-            const posts = controller.sortSubreaditPostsByAge('DESC', subreadit);
+            const posts = controller.sortSubreaditPostsByAge('ASC', subreadit);
             const model = {
                 subreadit,
                 posts,

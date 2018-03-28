@@ -5,8 +5,15 @@ block content
     ul
         each post in posts
             li
-                div
-                    a(href=subreadit + "/post/" + post.id) #{post.name}
-                    img.img-thumbnail.img-responsive(src=post.image)
-                    =post.userName
-                    =post.commentsCount
+                div.postContainer
+                    div.innerPostContainer
+                        a.thumbnail.img-thumbnail(href=subreadit + "/post/" + post.id)
+                            img(src=post.image)
+                        div.postInfo
+                            p.title
+                                a(href='/r/' + post.subreaditName + '/post/' + post.id) #{post.name}
+                            p.tagline
+                                | Submitted by 
+                                a(href="/user/" + post.userName) #{post.userName} 
+                                | #{post.commentsCount}
+                                |   Comments

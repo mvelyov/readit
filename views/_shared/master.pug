@@ -18,6 +18,9 @@ html(lang="en")
         block head_scripts
     body
         +nav()
+    .container
+        != messages('../messages/message', locals)
+        //- +bottomNav()
         //- +header()
         //- +navBottom()
     .container

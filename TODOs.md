@@ -27,8 +27,8 @@ NICE CHANGE BUT WE CAN GO WITHOUT IT / Хубава промяна, но мож�
             Example/Пример:
                 - Create post form:
                     - post name, post content, subreaditId, userId cannot be null
-#####    **WHO IS WORKING ON IT / КОЙ ЩЕ РАБОТИ НАД ТОВА:**
-#####   **STATUS:**
+#####    **WHO IS WORKING ON IT / КОЙ ЩЕ РАБОТИ НАД ТОВА:** -----> Mario
+#####   **STATUS:** create form -----> Completed; register form---> In Progress.
 
 
 ###    **2. Fix the positive flash messages when a user is logged in or a post/comment is created**

@@ -1,7 +1,9 @@
 extends ../_shared/master
 
 block content
-
+    if errors
+        each error, i in errors
+            div(class="alert alert-danger") #{error}
     form.form-row(action="/user/login", method="post")
         div.col
             input.form-control(type='text', name='username')

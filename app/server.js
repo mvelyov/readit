@@ -1,12 +1,19 @@
 const express = require('express');
+const expressValidator = require('express-validator');
+const expressSession = require('express-session');
 const bodyParser = require('body-parser');
 const config = require('./config');
 const data = require('./data');
-
 const app = express();
 
 app.use(bodyParser.urlencoded({
     extended: true,
+}));
+app.use(expressValidator());
+app.use(expressSession({
+    secret: 'full stack project',
+    saveUninitialized: false,
+    resave: false,
 }));
 
 app.set('view engine', 'pug');

@@ -84,18 +84,41 @@ const init = (app, data) => {
             }
         })
         .post('/r/:subreadit', async (req, res) => {
+            req.check('name', 'Title field is required!').isLength({
+                min: 1,
+            });
+            req.check('content', 'Content field is required!').isLength({
+                min: 1,
+            });
+
             const subreadit = req.params.subreadit;
             const post = req.body;
             post.userId = req.user.id;
             post.subreaditId = Number(post.subreaditId);
             if (post.tagsId) {
                 post.tagsId = Array.isArray(post.tagsId) ?
-                post.tagsId.map(Number) : [post.tagsId].map(Number);
+                    post.tagsId.map(Number) : [post.tagsId].map(Number);
             } else {
                 delete post.tagIds;
             }
-            await controller.createPost(post);
-            res.redirect('/r/' + subreadit);
+
+            const errors = req.validationErrors();
+            if (errors) {
+                const {
+                    tags,
+                    subreadits,
+                } = await controller.getCreateData();
+                const model = {
+                    tags,
+                    subreadit,
+                    subreadits,
+                    errors,
+                };
+                res.render('create/post', model);
+            } else {
+                await controller.createPost(post);
+                res.redirect('/r/' + subreadit);
+            }
         });
 };
 

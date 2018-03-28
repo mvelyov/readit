@@ -18,9 +18,6 @@ html(lang="en")
         +nav()
     .container
         != messages('../messages/message', locals)
-        if errors
-            each error, i in errors
-                div(class="alert alert-danger") #{error}
         //- +bottomNav()
         //- +header()
         block content

@@ -1,4 +1,27 @@
 mixin header()
     header
-        div
-            img.img-fluid.header(src="/static/images/images.jpg")
+        div.fluid-container
+            if headerImage
+                img.img-fluid.header(src=headerImage)
+            if subreadit && headerImage
+                nav.main-nav
+                    ul
+                        li
+                            a(href="/r/" + subreadit + "/hottest") Hottest
+                        li
+                            a(href="/r/" + subreadit + "/coldest") Coldest
+                        li
+                            a(href="/r/" + subreadit + "/newest") Newest
+                        li
+                            a(href="/r/" + subreadit + "/oldest") Oldest
+            else if !subreadit && headerImage
+                nav.main-nav
+                    ul
+                        li
+                            a(href="/home/hottest") Hottest
+                        li
+                            a(href="/home/coldest") Coldest
+                        li
+                            a(href="/home/newest") Newest
+                        li
+                            a(href="/home/oldest") Oldest

@@ -69,7 +69,7 @@ class HomeController {
     async sortByAge(condition) {
         return await this.getPostsInfo(condition);
     }
-    async sortByNumberOfComments(postsArr, condition = 'DESC') {
+    sortByNumberOfComments(postsArr, condition = 'DESC') {
         if (condition === 'ASC') {
             postsArr.sort((a, b) => a.commentsCount - b.commentsCount);
         } else {

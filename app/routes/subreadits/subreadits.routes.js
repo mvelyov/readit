@@ -21,54 +21,87 @@ const init = (app, data) => {
         })
         .get('/r/:subreadit', async (req, res) => {
             const subreadit = req.params.subreadit;
+            const {
+                id,
+                headerImage,
+            } = await controller.getSubreaditIdByName(subreadit);
             const posts = await controller.getPostsBySubreadit(subreadit);
             const model = {
                 subreadit,
                 posts,
+                id,
+                headerImage,
             };
             res.render('subreadits/subreadit', model);
         })
         .get('/r/:subreadit/newest', async (req, res) => {
             const subreadit = req.params.subreadit;
+            const {
+                id,
+                headerImage,
+            } = await controller.getSubreaditIdByName(subreadit);
             const posts = controller.sortSubreaditPostsByAge('DESC', subreadit);
             const model = {
                 subreadit,
                 posts,
+                id,
+                headerImage,
             };
             res.render('subreadits/subreadit', model);
         })
         .get('/r/:subreadit/oldest', async (req, res) => {
             const subreadit = req.params.subreadit;
+            const {
+                id,
+                headerImage,
+            } = await controller.getSubreaditIdByName(subreadit);
             const posts = controller.sortSubreaditPostsByAge('ASC', subreadit);
             const model = {
                 subreadit,
                 posts,
+                id,
+                headerImage,
             };
             res.render('subreadits/subreadit', model);
         })
         .get('/r/:subreadit/hottest', async (req, res) => {
             const subreadit = req.params.subreadit;
-            let posts = controller.getOnlySubreaditPosts(subreadit);
+            const {
+                id,
+                headerImage,
+            } = await controller.getSubreaditIdByName(subreadit);
+            let posts = await controller.getPostsBySubreadit(subreadit);
             posts = controller.sortByNumberOfComments(posts, 'DESC');
             const model = {
                 subreadit,
                 posts,
+                id,
+                headerImage,
             };
             res.render('subreadits/subreadit', model);
         })
-        .get('/r/:subreadit/hottest', async (req, res) => {
+        .get('/r/:subreadit/coldest', async (req, res) => {
             const subreadit = req.params.subreadit;
-            let posts = controller.getOnlySubreaditPosts(subreadit);
+            const {
+                id,
+                headerImage,
+            } = await controller.getSubreaditIdByName(subreadit);
+            let posts = await controller.getPostsBySubreadit(subreadit);
             posts = controller.sortByNumberOfComments(posts, 'ASC');
             const model = {
                 subreadit,
                 posts,
+                id,
+                headerImage,
             };
             res.render('subreadits/subreadit', model);
         })
         .get('/r/:subreadit/create', async (req, res) => {
             if (req.isAuthenticated()) {
                 const subreadit = req.params.subreadit;
+                const {
+                    headerImage,
+                } = await controller.getSubreaditIdByName(subreadit);
                 const {
                     tags,
                     subreadits,
@@ -77,6 +110,7 @@ const init = (app, data) => {
                     tags,
                     subreadit,
                     subreadits,
+                    headerImage,
                 };
                 res.render('create/post', model);
             } else {

@@ -13,21 +13,3 @@ mixin navBottom()
             li
                 a(href="/home/all/coldest")
                     | coldest
-            if user
-                =user.username
-                a(href="/logout")
-                    | Log out
-            else
-            li
-                ul 
-                    form(action="/home", method="post")
-                    li
-                        input(type="text", name="user")
-                    li
-                        input(type="password", name ='password')
-                    li
-                        a(href="/login")
-                            | Log in
-                    li
-                        a(href="/register")
-                            | Register

@@ -4,7 +4,7 @@ block content
     if errors
         each error, i in errors
             div(class="alert alert-danger") #{error}
-    form.form-row(action="/user/register", method="post")
+    form.form-row.register(action="/user/register", method="post")
         div.col
             label(for="userName")
                 | User Name:
@@ -15,7 +15,7 @@ block content
             input#password.form-control(type='password', name='password', placeholder='Password')
         div.col
             label(for="avatar")
-                | Avatar:
+                | Avatar Url:
             input#avatar(type="url", name="avatar")
         div.col
             input(type="submit", value="Register")

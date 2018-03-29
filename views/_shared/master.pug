@@ -18,11 +18,11 @@ html(lang="en")
         block head_scripts
     body
         +nav()
-    .container
-        != messages('../messages/message', locals)
-        //- +bottomNav()
-        //- +header()
+        +header()
         //- +navBottom()
+    .container
+        //- != messages('../messages/message', locals)
+        //- +bottomNav()
     .container
         .jumbotron
             != messages('../messages/message', locals)

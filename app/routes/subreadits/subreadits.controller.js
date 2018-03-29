@@ -8,8 +8,12 @@ class SubreaditController extends MainController {
         const subreadit = await this.data.subreadits.getByName(subreaditName);
         const {
             id,
+            headerImage,
         } = subreadit;
-        return id;
+        return {
+            id,
+            headerImage,
+        };
     }
     getOnlySubreaditPosts(arrayOfPosts, id) {
         const filteredArray = arrayOfPosts
@@ -17,17 +21,21 @@ class SubreaditController extends MainController {
         return filteredArray;
     }
     async getPostsBySubreadit(subreaditName) {
-        const id = await this.getSubreaditIdByName(subreaditName);
+        const {
+            id,
+        } = await this.getSubreaditIdByName(subreaditName);
         const allPosts = await this.getPostsInfo();
         const subreaditPosts = this.getOnlySubreaditPosts(allPosts.posts, id);
         return subreaditPosts;
     }
 
     async sortSubreaditPostsByAge(condition, subreaditName) {
-        const subreaditId = await this.getSubreaditIdByName(subreaditName);
+        const {
+            id,
+        } = await this.getSubreaditIdByName(subreaditName);
         const allSortedPosts = await this.sortByAge(condition);
         const sortedSubreaditPosts =
-            this.getOnlySubreaditPosts(allSortedPosts.posts, subreaditId);
+            this.getOnlySubreaditPosts(allSortedPosts.posts, id);
         return sortedSubreaditPosts;
     }
 
@@ -59,7 +67,8 @@ class SubreaditController extends MainController {
         const [tags, subreadits] =
         await Promise.all([
             this.data.tags.getAll(),
-            this.data.subreadits.getAll()]);
+            this.data.subreadits.getAll(),
+        ]);
         return {
             tags,
             subreadits,

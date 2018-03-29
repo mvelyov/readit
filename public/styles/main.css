@@ -7,7 +7,7 @@ a {
 }
 
 a:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 ul {
@@ -20,14 +20,23 @@ li {
     margin: 0;
     padding: 0;
 }
+.jumbotron {
+    margin-top: 5px;
+}
 .main-nav ul {
     text-align: center;
-    background-color: salmon;
+    background-color: rgba(77, 2, 2, 0.7);
+    border-radius: 10px;
 }
 
 .main-nav li {
     display: inline-block;
-    border-left: 1px solid #fff;
+    border-left: 1px solid;
+    border-color: rgba(255, 255, 255, 0.7);
+}
+
+.main-nav li:hover {
+    background-color:  rgba(77, 2, 2, 1);
 }
 
 .main-nav li:first-of-type {
@@ -36,24 +45,46 @@ li {
 
 .main-nav a {
     display: inline-block;
-    padding: 5px 15px;
-    color: white;
+    padding: 0px 15px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.main-nav a:hover {
+    color: rgba(255, 255, 255, 1);
 }
 
 img.header {
-    height: 100px;
+    max-height: 100%;
+    max-width: 100%;
+    height: 250px;
     width: 100%;
+    margin-bottom: -20px;
 }
-.main-nav ul li ul  {
-    text-align: right;    
+.main-nav ul li  {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+body > nav.navbar.navbar-inverse {
+    margin-bottom: 0px;
+    background-color: rgb(77, 2, 2);
+}
+
+/* login/register forms */
+
+.login, .register {
+    max-width: 100%;
+    width: 350px;
+    padding: 10px 20px;
+}
+
+.login input, .register input {
+    margin: 10px 5px;
 }
 
 /* Posts display on pages css */
 
 .thumbnail {
-    /* width: auto;
-    max-width: 100%;
-    max-height: 70px; */
     width: 95px;
     height: 95px;
     text-align: center;

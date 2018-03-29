@@ -1,4 +1,5 @@
 const MainController = require('../home/home.controller');
+const ta = require('../../../node_modules/time-ago/timeago');
 
 class PostController extends MainController {
     constructor(data) {
@@ -13,6 +14,7 @@ class PostController extends MainController {
         } else {
             tags = null;
         }
+        post.timeAgo = ta.ago(post.createdAt);
         const {
             image,
             name,
@@ -20,6 +22,8 @@ class PostController extends MainController {
             subreaditId,
             content,
             id,
+            createdAt,
+            timeAgo,
         } = post;
 
         const comments =
@@ -29,8 +33,8 @@ class PostController extends MainController {
                     comment.content = item.dataValues.content;
                     comment.userId = item.dataValues.userId;
                     comment.postId = item.dataValues.postId;
-                    comment.createdAt = item.dataValues.createdAt;
-                    comment.updatedAt = item.dataValues.updatedAt;
+                    comment.createdAt = ta.ago(item.dataValues.createdAt);
+                    comment.updatedAt = ta.ago(item.dataValues.updatedAt);
                     comment.user =
                         await this.data.users.getById(comment.userId);
                     comment.userName = comment.user.dataValues.userName;
@@ -60,6 +64,8 @@ class PostController extends MainController {
             avatar,
             content,
             id,
+            createdAt,
+            timeAgo,
         };
     }
 

@@ -1,3 +1,4 @@
+const ta = require('../../../node_modules/time-ago/timeago');
 class HomeController {
     constructor(data) {
         this.data = data;
@@ -28,6 +29,7 @@ class HomeController {
             post.tags = tags;
         }));
         posts = await Promise.all(posts.map(async (post) => {
+            post.createdAgo = ta.ago(post.createdAt);
             const {
                 image,
                 name,
@@ -36,6 +38,8 @@ class HomeController {
                 content,
                 id,
                 tags,
+                createdAt,
+                createdAgo,
             } = post;
             const {
                 userName,
@@ -54,6 +58,8 @@ class HomeController {
                 subreaditId,
                 subreaditName,
                 tags,
+                createdAt,
+                createdAgo,
             };
             return post;
         }));

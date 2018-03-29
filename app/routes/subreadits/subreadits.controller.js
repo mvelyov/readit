@@ -40,17 +40,13 @@ class SubreaditController extends MainController {
     }
 
     async createPost(postObject) {
-        let tagIds;
-        if (postObject.tagIds) {
-            tagIds = Array.isArray(postObject.tagsId) ?
-                postObject.tagsId : [postObject.tagsId];
-        }
         if (!postObject.image) {
             delete postObject.image;
         }
         const newPost = await this.data.posts.create(postObject);
-        if (tagIds) {
-            await newPost.setTags(tagIds);
+
+        if (postObject.tagsId) {
+            await newPost.setTags(postObject.tagsId);
         }
         return newPost;
     }

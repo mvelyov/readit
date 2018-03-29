@@ -93,6 +93,10 @@ body > nav.navbar.navbar-inverse {
     margin: 10px 5px;
 }
 
+label.tags {
+    margin-right: 5px;
+}
+
 /* Posts display on pages css */
 
 .thumbnail {
@@ -106,7 +110,7 @@ body > nav.navbar.navbar-inverse {
 }
 .thumbnail img {
     width: auto;
-    height: auto;
+    height: 100%;
     max-height: 80px;
     margin-top: 2%;
     display: inline-block;

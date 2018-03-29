@@ -27,7 +27,8 @@ const init = (app, data) => {
         })
         .get('/r/:subreadit/newest', async (req, res) => {
             const subreadit = req.params.subreadit;
-            const posts = controller.sortSubreaditPostsByAge('ASC', subreadit);
+            const posts = await controller
+                .sortSubreaditPostsByAge('ASC', subreadit);
             const model = {
                 subreadit,
                 posts,
@@ -36,7 +37,8 @@ const init = (app, data) => {
         })
         .get('/r/:subreadit/oldest', async (req, res) => {
             const subreadit = req.params.subreadit;
-            const posts = controller.sortSubreaditPostsByAge('DESC', subreadit);
+            const posts = await controller
+                .sortSubreaditPostsByAge('DESC', subreadit);
             const model = {
                 subreadit,
                 posts,
@@ -70,13 +72,13 @@ const init = (app, data) => {
             post.subreaditId = Number(post.subreaditId);
             if (post.tagsId) {
                 post.tagsId = Array.isArray(post.tagsId) ?
-                post.tagsId.map(Number) : [post.tagsId].map(Number);
+                    post.tagsId.map(Number) : [post.tagsId].map(Number);
             } else {
                 delete post.tagIds;
             }
             await controller.createPost(post);
             res.status(201)
-            .send(subreadit);
+                .send(subreadit);
         });
 };
 

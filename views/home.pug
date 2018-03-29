@@ -2,7 +2,7 @@ extends ./_shared/master
 
 block content
     ul
-        each post in postsLists.posts
+        each post in postsLists
             li 
                 div.postContainer
                     div.innerPostContainer
@@ -13,7 +13,8 @@ block content
                                 a(href='/r/' + post.subreaditName + '/post/' + post.id) #{post.name}
                             p.tagline
                                 | Submitted by 
-                                a(href="/user/" + post.userName) #{post.userName}
+                                a(href="/user/" + post.userName) #{post.userName} 
+                                | #{post.createdAgo} 
                                 |   To: 
                                 a(href='/r/' + post.subreaditName) #{post.subreaditName}  
                                 =post.commentsCount

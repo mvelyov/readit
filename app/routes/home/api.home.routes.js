@@ -36,14 +36,18 @@ const init = (app, data) => {
             res.send(model);
         })
         .get('/home/hottest', async (req, res) => {
-            const postsLists = await controller.sortByNumberOfComments('DESC');
+            const posts = await controller.getPostsInfo();
+            const postsLists = await controller
+                .sortByNumberOfComments(posts.posts, 'DESC');
             const model = {
                 postsLists,
             };
             res.send(model);
         })
         .get('/home/coldest', async (req, res) => {
-            const postsLists = await controller.sortByNumberOfComments('ASC');
+            const posts = await controller.getPostsInfo();
+            const postsLists = await controller
+                .sortByNumberOfComments(posts.posts, 'ASC');
             const model = {
                 postsLists,
             };

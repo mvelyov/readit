@@ -3,6 +3,7 @@ const {
 } = require('express');
 
 const SubreaditController = require('./subreadits.controller');
+const ta = require('../../../node_modules/time-ago/timeago');
 
 const init = (app, data) => {
     const controller = new SubreaditController(data);
@@ -25,7 +26,11 @@ const init = (app, data) => {
                 id,
                 headerImage,
             } = await controller.getSubreaditIdByName(subreadit);
-            const posts = await controller.getPostsBySubreadit(subreadit);
+            let posts = await controller.getPostsBySubreadit(subreadit);
+            posts = posts.map((post) => {
+                post.timeAgo = ta.ago(post.createdAt);
+                return post;
+            });
             const model = {
                 subreadit,
                 posts,
@@ -40,7 +45,8 @@ const init = (app, data) => {
                 id,
                 headerImage,
             } = await controller.getSubreaditIdByName(subreadit);
-            const posts = controller.sortSubreaditPostsByAge('DESC', subreadit);
+            const posts = await controller
+                .sortSubreaditPostsByAge('DESC', subreadit);
             const model = {
                 subreadit,
                 posts,
@@ -55,7 +61,8 @@ const init = (app, data) => {
                 id,
                 headerImage,
             } = await controller.getSubreaditIdByName(subreadit);
-            const posts = controller.sortSubreaditPostsByAge('ASC', subreadit);
+            const posts = await controller
+                .sortSubreaditPostsByAge('ASC', subreadit);
             const model = {
                 subreadit,
                 posts,
@@ -135,7 +142,6 @@ const init = (app, data) => {
             } else {
                 delete post.tagIds;
             }
-
             const errors = req.validationErrors();
             if (errors) {
                 const {

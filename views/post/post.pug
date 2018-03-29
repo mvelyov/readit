@@ -48,14 +48,3 @@ block content
                 a.media-heading.commentUser(href="/user/" + comment.userName) #{comment.userName}
                 p.commentContent #{comment.content}
                 p.commentCreatedAt #{comment.createdAt}
-    //- div
-    //-     ul
-    //-         each comment in postInfo.comments
-    //-             li
-    //-                 div
-    //-                     img(src=comment.userAvatar)
-    //-                     a(href="/user/" + comment.userName) #{comment.userName}
-    //-                     p
-    //-                         =comment.content
-    //-                     p
-    //-                         =comment.createdAt

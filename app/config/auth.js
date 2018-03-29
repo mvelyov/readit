@@ -10,7 +10,7 @@ const init = (app, data) => {
     passport.use(new Strategy(async (username, password, done) => {
         const user = await data.users.findByUserName(username);
         if (!user || user.password !== password) {
-            done(null, false, {
+            return done(null, false, {
                 message: 'Incorrect username or password!',
             });
         }

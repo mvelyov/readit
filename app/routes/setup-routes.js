@@ -13,6 +13,9 @@ const init = (app, data) => {
             const route = require(modulePath);
             route.init(app, data);
         });
+    app.get('/*', (req, res) => {
+        res.render('notFound');
+    });
 };
 
 /** dynamically load all routes */

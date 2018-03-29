@@ -99,8 +99,8 @@ NICE CHANGE BUT WE CAN GO WITHOUT IT / Хубава промяна, но мож�
 ###     **8. Use bycript for heshing the user password before it goes into the database**
         Да се използва bycriptjs за хеширане (скриване) на паролата на потребителя преди да отиде в базата от данни
 ####    **Importance: 2**
-#####    **WHO IS WORKING ON IT / КОЙ ЩЕ РАБОТИ НАД ТОВА:**
-#####   **STATUS:**
+#####    **WHO IS WORKING ON IT / КОЙ ЩЕ РАБОТИ НАД ТОВА:** -----> Vladi
+#####   **STATUS:** ----> Completed!
 
 More may be added soon...
 
@@ -122,8 +122,8 @@ More may be added soon...
 ####    **Importance: 1**
         - Bottom-nav should have "Hottest", "Coldest", "Newest", "Oldest" buttons to use the existing routes for sorting the posts, the existing routes are different for the home page and for the subreadits, therefore the buttons should make different GET requests based on the route from which they are called. The footer is relatively easy task, but it would make the app more pleasent for the user.
         - Долната навигация трябва да има "Hottest", "Coldest", "Newest", "Oldest" бутони, които използват вече същевстуващите пътища в апликцяита за сортиране на постовете. Съществуващите пътища са различни за главната страница и за страниците с рализчните събредити, следователно бутоните трябва да правят различни GET заявки според страницата, от която са извикани. Footer-а е лесна задача, но допринася за по-приятната визия на сайта.
-#####    **WHO IS WORKING ON IT / КОЙ ЩЕ РАБОТИ НАД ТОВА:**
-#####   **STATUS:**
+#####    **WHO IS WORKING ON IT / КОЙ ЩЕ РАБОТИ НАД ТОВА:** ----> Vladi
+#####   **STATUS:** ---> Completed!
 
 
 ###     **3. jQuery/CSS/PUG for better visualisation of the app**

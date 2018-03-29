@@ -2,6 +2,7 @@ const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const config = require('../config');
+const bcrypt = require('bcrypt');
 const {
     Strategy,
 } = require('passport-local');
@@ -9,12 +10,23 @@ const {
 const init = (app, data) => {
     passport.use(new Strategy(async (username, password, done) => {
         const user = await data.users.findByUserName(username);
-        if (!user || user.password !== password) {
-            return done(null, false, {
-                message: 'Incorrect username or password!',
+        if (!user) {
+            done(null, false, {
+                message: 'Incorrect username!',
+            });
+        } else {
+            bcrypt.compare(password, user.password, (err, res) => {
+                if (err) {
+                    return done(err);
+                }
+                if (!res) {
+                    return done(null, false, {
+                        message: 'Incorrect Password',
+                    });
+                }
+                return done(null, user);
             });
         }
-        return done(null, user);
     }));
     passport.serializeUser((user, done) => {
         done(null, user.userName);

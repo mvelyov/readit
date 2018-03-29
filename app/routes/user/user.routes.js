@@ -16,10 +16,12 @@ const init = (app, data) => {
             });
         })
         .post('/user/register', async (req, res) => {
-            req.check('userName', 'Invalid user name! User name must be at least 1 character long!')
+            req.check('userName', 'Invalid username! The username must be at least 1 character long!')
             .isLength({
                 min: 1,
-            }).matches(/[a-zA-Z0-9]+/);
+            });
+
+            req.check('userName', 'The username must contains letters or numbers!').matches(/[a-zA-Z0-9]+/);
 
             req.check('password', 'Passwords must be at least 4 characters long!')
             .isLength({

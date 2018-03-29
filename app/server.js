@@ -10,11 +10,6 @@ app.use(bodyParser.urlencoded({
     extended: true,
 }));
 app.use(expressValidator());
-app.use(expressSession({
-    secret: 'full stack project',
-    saveUninitialized: false,
-    resave: false,
-}));
 
 app.set('view engine', 'pug');
 

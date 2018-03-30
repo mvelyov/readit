@@ -24,6 +24,9 @@ block content
             if postInfo.userId === loggedUserId
                 a(href="/post/edit/" + postInfo.subreaditName + "/" + postInfo.id) 
                     | Edit
+                br
+                a(href="/post/delete/" + postInfo.subreaditName + "/" + postInfo.id) 
+                    | Delete
     hr
     h3
         | Add a comment

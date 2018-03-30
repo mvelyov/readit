@@ -81,6 +81,9 @@ class SubreaditController extends MainController {
         }
         return updatedPost;
     }
+    async deletePost(id) {
+        await this.data.posts.delete(id);
+    }
 }
 
 module.exports = SubreaditController;

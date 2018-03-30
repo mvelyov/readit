@@ -31,6 +31,14 @@ class Data {
         });
     }
 
+    delete(id) {
+        this.Model.destroy({
+            where: {
+                id: id,
+            },
+        });
+    }
+
     findCreateFind(columnName, value) {
         return this.Model.findCreateFind({
             where: {

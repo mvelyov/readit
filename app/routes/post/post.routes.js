@@ -65,6 +65,31 @@ const init = (app, data) => {
             updatedPost.userId = Number(userId);
             await subreaditController.updatePost(updatedPost, postId);
             res.redirect('/r/' + subreadit);
+        })
+        .get('/post/delete/:subreadit/:id', async (req, res) => {
+            if (req.isAuthenticated()) {
+                const postId = req.params.id;
+                let loggedUserId;
+                const authenticated = req.isAuthenticated();
+                if (authenticated) {
+                    loggedUserId = req.user.id;
+                }
+                const postInfo = await controller.getPostInfo(postId);
+                const model = {
+                    postInfo,
+                    loggedUserId,
+                    authenticated,
+                };
+                res.render('post/deletePost', model);
+            } else {
+                res.redirect('/user/login');
+            }
+        })
+        .post('/post/delete/:subreadit/:id', async (req, res) => {
+            const subreadit = req.params.subreadit;
+            const postId = Number(req.params.id);
+            await subreaditController.deletePost(postId);
+            res.redirect('/r/' + subreadit);
         });
 };
 

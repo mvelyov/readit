@@ -20,7 +20,10 @@ block content
                     |Tags: 
                     each tag in postInfo.tags
                         li
-                            | #{tag} 
+                            | #{tag}
+                br
+                a(href="/post/edit/" + postInfo.subreaditName + "/" + postInfo.id) 
+                    | Edit
     hr
     h3
         | Add a comment

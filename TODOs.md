@@ -63,8 +63,8 @@ NICE CHANGE BUT WE CAN GO WITHOUT IT / Хубава промяна, но мож�
         - At the moment the user can only create comments and posts, but once they are created the user does not have the ability to amend or delete the comments/posts. This is a horrible user experience and when in production it will polute the app with unwanted comments that cannot be deleted.
         - В момента юзера може само да създава коментари и постове, но един път създадени, юзера не може да ги променя или трие. Това ужасно поведение на апликцаията от гледна точка на юзерите, и когато апликцията е в стадий на продукция, тя ще е замърсена с нежелани коментари, които не могат да бъдат изтрити.
 #####   **IMPORTANT / ВАЖНО: The user must be able to delete ONLY their comment/post. Юзера трябва да може да трие САМО тяхните                   коментари/постове.**
-#####    **WHO IS WORKING ON IT / КОЙ ЩЕ РАБОТИ НАД ТОВА:**
-#####   **STATUS:**
+#####    **WHO IS WORKING ON IT / КОЙ ЩЕ РАБОТИ НАД ТОВА:** -----> Mario
+#####   **STATUS:** ----> in Progress
 
 
 ###     **5. Create PUT routes for comments and posts and user information**

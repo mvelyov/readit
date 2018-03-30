@@ -1,0 +1,31 @@
+extends ../_shared/master
+
+block content
+
+        h1
+            | Edit post in #{postInfo.subreaditName}!
+        form(action="/post/edit/" + postInfo.subreaditName + "/" + postInfo.id, method="post")
+            div.form-group
+                label(for="title") Title
+                input(type="text", name="name", id="title", class="form-control", value=postInfo.name)
+            div.form-group
+                label(for="image") Image
+                input(type="url", name ='image', id="image", class="form-control", value=postInfo.image)
+            div.form-group
+                label(for="subreaditSelect") Subreadits
+                select#subreaditSelect.select.form-control.input-md(name="subreaditId")
+                    each subrdt in subreadits
+                        if subrdt.name === postInfo.subreaditName
+                            option(value=subrdt.id, selected= true) #{subrdt.name}
+                        else
+                            option(value=subrdt.id) #{subrdt.name}
+            div.form-group
+                label.tags(for="tags") Tags
+                select#tags.selectpicker.multiple(name="tagsId", multiple)&attributes({'data-live-search': 'true'})
+                    each tag in postInfo.tags
+                        option(value=tag.id, data-id=tag.id) #{tag.name}
+            div.form-group
+                label(for="content") 
+                textarea#content(name="content", cols="60", rows="10")= postInfo.content
+            div.form-group
+                button.btn.btn-primary(type="submit") Edit

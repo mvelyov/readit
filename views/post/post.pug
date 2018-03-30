@@ -21,7 +21,7 @@ block content
                     each tag in postInfo.tags
                         li
                             | #{tag}
-                br
+            if postInfo.userId === loggedUserId
                 a(href="/post/edit/" + postInfo.subreaditName + "/" + postInfo.id) 
                     | Edit
     hr
@@ -31,7 +31,7 @@ block content
         p
             form(action="/r/" + postInfo.subreaditName + "/post/" + postInfo.id, method="post")
                 div
-                textarea(name="content", cols="50", rows="5")
+                textarea.textarea(name="content", cols="50", rows="5")
                 div
                     button(type="submit")
                         | Submit

@@ -59,6 +59,7 @@ class PostController extends MainController {
             name,
             comments,
             userName,
+            userId,
             subreaditName,
             tags,
             avatar,

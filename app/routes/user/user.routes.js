@@ -82,7 +82,6 @@ const init = (app, data) => {
                 comments,
                 posts,
             } = await controller.getUserPostsAndComments(username);
-            console.log(comments);
             const model = {
                 id,
                 userName,

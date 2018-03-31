@@ -46,8 +46,6 @@ module.exports = (sequelize, DataTypes) => {
         }
       });
     });
-    console.log(hashedPassword)
-    console.log(user.password);
     user.password = hashedPassword;
   });
   return user;

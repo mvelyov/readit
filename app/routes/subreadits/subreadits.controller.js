@@ -92,6 +92,11 @@ class SubreaditController extends MainController {
         updateComment = await this.data.comments.getById(id);
         return updateComment;
     }
+    async deleteComment(id) {
+        const comment = await this.data.comments.getById(id);
+        await this.data.comments.deleteComment(id);
+        return comment;
+    }
 }
 
 module.exports = SubreaditController;

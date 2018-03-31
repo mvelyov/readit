@@ -54,4 +54,9 @@ block content
             .media-body.commentBody
                 a.media-heading.commentUser(href="/user/" + comment.userName) #{comment.userName}
                 p.commentContent #{comment.content}
+                if comment.userId === loggedUserId
+                    br
+                    a(href="/edit/" + postInfo.subreaditName + "/post/comment/" +  comment.id)
+                        | Edit
                 p.commentCreatedAt #{comment.createdAt}
+                        

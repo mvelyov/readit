@@ -89,7 +89,35 @@ const init = (app, data) => {
             const subreadit = req.params.subreadit;
             const postId = Number(req.params.id);
             await subreaditController.deletePost(postId);
+            await subreaditController.deleteCommentsFromPost(postId);
             res.redirect('/r/' + subreadit);
+        })
+        .get('/edit/:subreadit/post/comment/:id', async (req, res) => {
+            if (req.isAuthenticated()) {
+                const commentId = req.params.id;
+                let loggedUserId;
+                const authenticated = req.isAuthenticated();
+                if (authenticated) {
+                    loggedUserId = req.user.id;
+                }
+                const commentsInfo = await controller.getCommentInfo(commentId);
+                const subreaditName = req.params.subreadit;
+                const model = {
+                    commentsInfo,
+                    loggedUserId,
+                    subreaditName,
+                };
+                res.render('post/editComment', model);
+            } else {
+                res.redirect('/user/login');
+            }
+        })
+        .post('/edit/:subreadit/post/comment/:id', async (req, res) => {
+            const updatedComment = req.body;
+            const commentId = Number(req.params.id);
+            const comment = await subreaditController.updateComment(updatedComment, commentId);
+            const subreaditName = req.params.subreadit;
+            res.redirect('/r/' + subreaditName + '/post/' + comment.postId);
         });
 };
 

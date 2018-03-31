@@ -30,6 +30,7 @@ class PostController extends MainController {
             (await this.data.comments.getCommentsOnPost(postId)
                 .map(async (item) => {
                     const comment = {};
+                    comment.id = item.dataValues.id;
                     comment.content = item.dataValues.content;
                     comment.userId = item.dataValues.userId;
                     comment.postId = item.dataValues.postId;
@@ -73,6 +74,10 @@ class PostController extends MainController {
     async createNewComment(commentObj) {
         const newComment = await this.data.comments.create(commentObj);
         return newComment;
+    }
+    async getCommentInfo(id) {
+        const commentsInfo = await this.data.comments.getById(id);
+        return commentsInfo;
     }
 }
 

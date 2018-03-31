@@ -15,7 +15,7 @@ const init = (app, data) => {
                 errors: errors,
             });
         })
-        .post('/user/register', async (req, res) => {
+        .post('/user/register', async (req, res, next) => {
             req.check('userName', 'Invalid username!'+
             ' The username must be at least 1 character long!')
             .isLength({
@@ -50,7 +50,7 @@ const init = (app, data) => {
                 if (newUser.newUser) {
                     req.flash('success', 'User Created!' +
                         ' Welcome to Readit! You can now log-in');
-                    res.redirect('/user/login');
+                    res.redirect('/');
                 } else {
                     const errors = newUser.errors;
                     req.flash('error', errors);
@@ -82,6 +82,7 @@ const init = (app, data) => {
                 comments,
                 posts,
             } = await controller.getUserPostsAndComments(username);
+            console.log(comments);
             const model = {
                 id,
                 userName,

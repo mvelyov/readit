@@ -8,6 +8,7 @@ block content
                 img.media-object.postImage(src=postInfo.image, alt="")
         .media-body
             h2.media-heading #{postInfo.name}
+            hr.profileHr
             p #{postInfo.content}
             span 
                 | In    
@@ -41,7 +42,7 @@ block content
     h3 All comments:
     each comment in postInfo.comments
         .media
-            .media-left
+            .media-left.commentLet
                 a(href="#")
                     img.media-object.mediumAvatar.img-circle(src=comment.userAvatar, alt="")
             .media-body.commentBody

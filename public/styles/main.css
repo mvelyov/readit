@@ -23,6 +23,15 @@ li {
 .jumbotron {
     margin-top: 5px;
 }
+.profile {
+    text-align: center;
+}
+
+.profile-nav li {
+    text-align: center;
+    float: none;
+    display: inline-block;
+}
 
 .notfound {
     display: block;
@@ -74,6 +83,9 @@ img.header {
 .main-nav ul li  {
     text-align: center;
     margin-bottom: 20px;
+    background-color: #337ab7;
+    border-radius: 10px;
+    margin-left: 5px;
 }
 
 body > nav.navbar.navbar-inverse {
@@ -140,12 +152,27 @@ p.tagline {
     font-size: 0.8em;
 }
 
-/* post page display */
-
+/* post page and posts in profile page display */
+.postContainer {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
 h2.media-heading {
     font-size: 3em;
     font-weight: bolder;
-    color: salmon;
+    color: #337ab7;
+}
+a.h3.media-heading {
+    font-weight: bolder;
+    color: #337ab7;
+}
+hr.profileHr {
+    margin-top: 0px;
+    margin-left: 10px;
+    margin-right: 80px;
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
 img.media-object.postImage {
     max-height: 100%;
@@ -159,6 +186,7 @@ img.smallAvatar {
     max-width: auto;
     height: 20px;
     width: 20px;
+    border-radius: 5px;
 }
 
 img.mediumAvatar {
@@ -168,29 +196,61 @@ img.mediumAvatar {
     width: 50px;
 }
 
-div.media-body p {
-    border: 1px solid rgb(235, 168, 168);
+div.media-body {
+    background-color: rgb(247, 249, 255);
     border-radius: 10px;
-    margin: 2px 5px;
-    padding: 3px 3px;
-    color: salmon;
+}
+
+div.media-body p {
+    font-size: 1.3em;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin-left: 25px;
+    padding: 10px 3px 1px;
+    color: black;
 }
 
 div.media-body span {
-    color: tan;
+    color: black;
+    font-size: 0.8em;
+    margin-left: 20px;
 }
-
+.media-heading {
+    margin-bottom: 2px;
+    margin-left: 10px;
+    padding-top: 15px;
+}
 hr {
     height: 12px;
     box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);
     margin: 50px 0 5px 0;
 }
 
-.tags ul li, ul {
+.tags ul li {
     display: inline;
-    color: tan;
+    color: black;
+    margin-left: 5px;
 }
 
+.tags ul {
+    margin-left: 20px;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+.profieTags ul {
+    font-size: 0.8em;
+}
+.media-left.commentLet {
+    display: inline-block;
+}
+.media-body.commentBody {
+    display: inline-block;
+    word-wrap: break-word;
+    max-width: 80%;
+    width: auto;
+    padding-right: 50px;
+}
 .media-body.commentBody p {
     font-size: 1.1em;
     border: none;

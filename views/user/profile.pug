@@ -1,26 +1,69 @@
 extends ../_shared/master
 
 block content
-    img(src=avatar)
-    ul
-        li
-            | Your username id: #{id}
-        li
-            | Your username: #{userName}
-        if comments
-            each comment in comments
-                li
-                    =comment.dataValues.content
-                    =comment.dataValues.createdAt
-            else
-                li
-                    | No comments yet :(
-        if posts
-            each post in posts
-                li
-                    =post.dataValues.name
-                    =post.dataValues.content
-                    =post.dataValues.createdAt
-            else
-                li
-                    | No posts yet :(
+    .container.profile
+        img.img-thumbnail.img-circle(src=avatar)
+        ul
+            li.h2
+                | #{userName}
+        ul.nav.nav-pills.profile-nav
+            li.h4
+                a(href="#posts", data-toggle="pill") Posts
+            li.h4
+                a(href="#comments", data-toggle="pill") Comments
+    .tab-content.profile-content
+        div#posts.tab-pane.fade.in.active
+                ul
+                    if posts
+                        each post in posts
+                            li
+                                div.postContainer
+                                    div.innerPostContainer
+                                        .media
+                                            .media-left
+                                                a(href=post.image)
+                                                    img.mediumAvatar(src=post.image, alt="")
+                                            .media-body
+                                                a.h3.media-heading(href="/r/" + post.subreadit + "/post/" + post.id) #{post.name}
+                                                p.h6 #{post.content}
+                                                span 
+                                                    | In    
+                                                    a(href="/r/" + post.subreadit) r/#{post.subreadit}  
+                                                    | Created: #{post.createdAgo}
+                                                    if post.createdAgo !== post.updateAgo
+                                                        | Last Updated: #{post.updatedAgo}
+                                                .tags
+                                                    ul.profileTags
+                                                        |Tags: 
+                                                        each tag in post.tags
+                                                            li
+                                                                | #{tag} 
+                        else
+                            ul
+                                li
+                                    | No posts yet :(
+        div#comments.tab-pane.fade.in
+            ul
+                if comments
+                    each comment in comments
+                            li
+                                div.postContainer
+                                    div.innerPostContainer
+                                        .media
+                                            .media-left.commentLet
+                                                a(href=avatar)
+                                                    img.mediumAvatar(src=avatar, alt="")
+                                            .media-body.commentBody
+                                                h3.media-heading #{comment.content}
+                                                | On: 
+                                                a(href="/r/" + comment.subreaditName + "/" + comment.postId) #{comment.postName} 
+                                                span 
+                                                    | In    
+                                                    a(href="/r/" + comment.subreaditName) r/#{comment.subreaditName}  
+                                                    | Created: #{comment.createdAgo}
+                                                    if comment.createdAgo !== comment.updatedAgo
+                                                        | Last Updated: #{comment.updatedAgo}
+                    else
+                            ul
+                                li
+                                    | No comments yet :(

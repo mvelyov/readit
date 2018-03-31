@@ -136,7 +136,7 @@ More may be added soon...
         Можем да ползваме [Истинския reddit.com сайт](www.reddit.com) за помощ в това как да моделираме коментарите и постовте и можем да го подобрим (Да сме честни, reddit сайта не е мого по-красива от нашия в сегашното му състояние).
         JQUERY може да се използва с манипулиране на и "леки" анимцаии, за да се направи 'мазничък', както би се изразил Жорката.
 #####    **WHO IS WORKING ON IT / КОЙ ЩЕ РАБОТИ НАД ТОВА:** -----> Vladi
-#####   **STATUS:** ---> In Progress.
+#####   **STATUS:** ---> Completed (major work completed, this could be reviseted if there's time).
 
 
 ###     **4.Combining the log-in and register pages into 1 and creating a pop-up modal for login and registering**
@@ -156,8 +156,8 @@ More may be added soon...
         Имплементиране на тестове за 50% от апликцаията
 ####    **Importance: 1**
         - This is a mandatory project requirement! We currently have quite a few tests already, however we have new controllers and new api functions and functionalities, which we need to test.
-#####    **WHO IS WORKING ON IT / КОЙ ЩЕ РАБОТИ НАД ТОВА:**
-#####   **STATUS:**
+#####    **WHO IS WORKING ON IT / КОЙ ЩЕ РАБОТИ НАД ТОВА:** ----> Vladi / Desi / Mario
+#####   **STATUS:** In Progress
 
 
 ## **GENERAL APP/PROJECT WORK**

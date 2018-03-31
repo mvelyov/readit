@@ -70,6 +70,20 @@ class SubreaditController extends MainController {
             subreadits,
         };
     }
+    async updatePost(postObject, id) {
+        if (!postObject.image) {
+            delete postObject.image;
+        }
+        const updatedPost = await this.data.posts.update(postObject, id);
+
+        if (postObject.tagsId) {
+            await updatedPost.setTags(postObject.tagsId);
+        }
+        return updatedPost;
+    }
+    async deletePost(id) {
+        await this.data.posts.delete(id);
+    }
 }
 
 module.exports = SubreaditController;

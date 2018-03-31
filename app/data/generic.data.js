@@ -23,6 +23,22 @@ class Data {
         return this.Model.create(newObject);
     }
 
+    update(object, id) {
+        return this.Model.update(object, {
+            where: {
+                id,
+            },
+        });
+    }
+
+    delete(id) {
+        this.Model.destroy({
+            where: {
+                id: id,
+            },
+        });
+    }
+
     findCreateFind(columnName, value) {
         return this.Model.findCreateFind({
             where: {

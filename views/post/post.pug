@@ -56,7 +56,9 @@ block content
             .media-body.commentBody
                 a.media-heading.commentUser(href="/user/" + comment.userName) #{comment.userName}
                 p.commentContent #{comment.content}
-                p.commentCreatedAt #{comment.createdAt}
+                p.commentCreatedAt Created: #{comment.createdAgo}
+                if comment.createdAgo !== comment.updatedAgo
+                    p.commentCreatedAt Last updated: #{comment.updatedAgo}
                 if comment.userId === loggedUserId
                     br
                     a(href="/edit/" + postInfo.subreaditName + "/post/comment/" +  comment.id)

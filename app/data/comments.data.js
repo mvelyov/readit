@@ -23,6 +23,20 @@ class CommentsData extends Data {
             },
         });
     }
+    deleteComments(id) {
+        this.Model.destroy({
+            where: {
+                postId: id,
+            },
+        });
+    }
+    deleteComment(id) {
+        this.Model.destroy({
+            where: {
+                id: id,
+            },
+        });
+    }
 }
 
 module.exports = CommentsData;

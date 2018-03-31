@@ -1,0 +1,11 @@
+extends ../_shared/master
+
+block content
+
+    p
+        form(action="/edit/" + subreaditName + "/post/comment/" + commentsInfo.id, method="post")
+            div
+            textarea.textarea(name="content", cols="50", rows="5")= commentsInfo.content
+            div
+                button(type="submit")
+                    | Save

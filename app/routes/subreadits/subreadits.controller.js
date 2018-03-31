@@ -84,6 +84,19 @@ class SubreaditController extends MainController {
     async deletePost(id) {
         await this.data.posts.delete(id);
     }
+    async deleteCommentsFromPost(id) {
+        await this.data.comments.deleteComments(id);
+    }
+    async updateComment(updatedComment, id) {
+        let updateComment = await this.data.comments.update(updatedComment, id);
+        updateComment = await this.data.comments.getById(id);
+        return updateComment;
+    }
+    async deleteComment(id) {
+        const comment = await this.data.comments.getById(id);
+        await this.data.comments.deleteComment(id);
+        return comment;
+    }
 }
 
 module.exports = SubreaditController;

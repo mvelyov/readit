@@ -73,24 +73,6 @@ describe('Generic data', () => {
             })
         })
     })
-    describe('getAllSubreadits()', () => {
-        describe('when valid', () => {
-            it('existing id, expect to return the object', async () => {
-                const id = ['subreadit1' , 'subreadit2'];
-                const object = {
-                    id,
-                };
-
-                Model.findAll = (id) => {
-                    return object;
-                };
-
-                const resultObject = await data.getAllSubreadits(id);
-
-                expect(resultObject).to.equal(object);
-            })
-        })
-    })
     describe('getById()', () => {
         describe('when valid', () => {
             it('existing id, expect to return the object', async () => {

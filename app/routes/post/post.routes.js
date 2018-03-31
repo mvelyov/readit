@@ -64,7 +64,7 @@ const init = (app, data) => {
             updatedPost.postId = Number(postId);
             updatedPost.userId = Number(userId);
             await subreaditController.updatePost(updatedPost, postId);
-            res.redirect('/r/' + subreadit);
+            res.redirect('/r/' + subreadit + '/post/' + postId);
         })
         .get('/post/delete/:subreadit/:id', async (req, res) => {
             if (req.isAuthenticated()) {
@@ -115,7 +115,8 @@ const init = (app, data) => {
         .post('/edit/:subreadit/post/comment/:id', async (req, res) => {
             const updatedComment = req.body;
             const commentId = Number(req.params.id);
-            const comment = await subreaditController.updateComment(updatedComment, commentId);
+            const comment = await subreaditController
+                .updateComment(updatedComment, commentId);
             const subreaditName = req.params.subreadit;
             res.redirect('/r/' + subreaditName + '/post/' + comment.postId);
         })
@@ -140,7 +141,6 @@ const init = (app, data) => {
             }
         })
         .post('/delete/:subreadit/post/comment/:id', async (req, res) => {
-            const updatedComment = req.body;
             const commentId = Number(req.params.id);
             const comment = await subreaditController.deleteComment(commentId);
             const subreaditName = req.params.subreadit;

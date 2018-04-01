@@ -71,6 +71,12 @@ const init = (app, data) => {
             const commentId = Number(req.params.id);
             await controller.deleteComment(commentId);
             res.end();
+        })
+        .put('/post/:postId/comment/:id', async (req, res) => {
+            const updatedComment = req.body;
+            const commentId = Number(req.params.id);
+            await controller.updateComment(updatedComment, commentId);
+            res.end();
         });
 };
 

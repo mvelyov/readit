@@ -272,3 +272,17 @@ a.media-heading.commentUser {
     border: 1px solid black;
     border-radius: 10px;
 }
+
+/* dynamically added edit inputs */
+
+div.media .edit {
+    display: none;
+}
+
+div.media.edit .edit {
+    display: initial;
+}
+
+div.edit .noEdit {
+    display: none;
+}

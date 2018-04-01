@@ -9,7 +9,6 @@ $(function () {
     var commentBuilder = function (model) {
         var arrOfComments = model.postInfo.comments;
         var loggedUserId = model.loggedUserId;
-        var postInfo = model.postInfo;
         arrOfComments.forEach(function (comment) {
             var $mediaDiv = $("<div>").addClass("media");
             var $mediaLeft = $("<div>").addClass("media-left commentLeft");
@@ -19,16 +18,20 @@ $(function () {
             var $mediaBody = $("<div>").addClass("media-body commentBody");
             var $aUser = $("<a/>").addClass("media-heading commentUser")
                 .attr("href", "/user/" + comment.userName).text(comment.userName);
-            var $pContent = $("<p>").addClass("commentContent").text(comment.content);
+            var $pContent = $("<p>").addClass("commentContent noEdit").text(comment.content);
+            var $editInput = $("<textarea/>")
+                .attr("cols", 50).attr("rows", 5).addClass("edit editContent");
             var $pCreatedAgo = $("<p>").addClass("commentCreatedAt")
                 .text("Created: " + comment.createdAgo);
             var $pUpdatedAgo = $("<p>").addClass("commentCreatedAt")
                 .text("Last updated: " + comment.updatedAgo);
             var $holdingSpan = $("<span>");
-            var $aEdit = $("<a/>").attr("href", "/edit/" + postInfo.subreaditName +
-                "/post/comment/" + comment.id).text("Edit ").addClass("update");
+            var $aEdit = $("<button/>").text("Edit").addClass("update noEdit")
+                .data("id", comment.id);
             var $aDelete = $("<button/>").text("Delete")
-                .data("id", comment.id).addClass("delete");
+                .data("id", comment.id).addClass("delete noEdit");
+            var $saveEdit = $("<button/>").addClass("edit saveEdit").text("Save");
+            var $cancelEdit = $("<button/>").addClass("edit cancelEdit").text("Cancel");
 
             $mediaDiv.appendTo($elementAfter);
             $mediaLeft.appendTo($mediaDiv);
@@ -37,6 +40,7 @@ $(function () {
             $mediaBody.appendTo($mediaDiv);
             $aUser.appendTo($mediaBody);
             $pContent.appendTo($mediaBody);
+            $editInput.appendTo($mediaBody);
             $pCreatedAgo.appendTo($mediaBody);
             if (comment.createdAgo !== comment.updatedAgo) {
                 $pUpdatedAgo.appendTo($mediaBody);
@@ -45,12 +49,14 @@ $(function () {
             if (comment.userId === loggedUserId) {
                 $aEdit.appendTo($holdingSpan);
                 $aDelete.appendTo($holdingSpan);
+                $saveEdit.appendTo($holdingSpan);
+                $cancelEdit.appendTo($holdingSpan);
             }
         });
     };
 
     var url = "/api/r/" + subreaditname + "/post/" + postId;
-    var delUrl = "/api/r/" + subreaditname + "/post/" + postId + "/comment/";
+    var delOrUpdUrl = "/api/r/" + subreaditname + "/post/" + postId + "/comment/";
     var loadAllComments = function () {
         $.ajax({
             method: "GET",
@@ -70,7 +76,7 @@ $(function () {
         });
     };
     loadAllComments();
-    $("#createComment").on("click", function() {
+    $("#createComment").on("click", function () {
         var data = {
             content: $("#commentTxt").val()
         };
@@ -86,13 +92,41 @@ $(function () {
             }
         });
     });
-    $elementAfter.on("click", ".delete", function() {
+    $elementAfter.on("click", ".delete", function () {
         var $divToDelete = $(this).closest("div.media");
         $.ajax({
             method: "DELETE",
-            url: delUrl + $(this).data("id"),
+            url: delOrUpdUrl + $(this).data("id"),
             success: function () {
                 $divToDelete.remove();
+            }
+        });
+    });
+
+    $elementAfter.on("click", ".update", function () {
+        var $divToUpdate = $(this).closest("div.media");
+        $divToUpdate.find("textarea.editContent")
+            .val($divToUpdate.find("p.commentContent").html());
+        $divToUpdate.addClass("edit");
+    });
+    $elementAfter.on("click", ".cancelEdit", function () {
+        var $divToUpdate = $(this).closest("div.media");
+        $divToUpdate.removeClass("edit");
+    });
+    $elementAfter.on("click", ".saveEdit", function () {
+        var $divToUpdate = $(this).closest("div.media");
+        var commentId = $divToUpdate.find("button.update").data("id");
+        var updatedComment = {
+            content: $divToUpdate.find("textarea.editContent").val()
+        };
+        $.ajax({
+            method: "PUT",
+            async: true,
+            data: updatedComment,
+            url: delOrUpdUrl + commentId,
+            success: function () {
+                $divToUpdate.find("p.commentContent").html(updatedComment.content);
+                $divToUpdate.removeClass("edit");
             }
         });
     });

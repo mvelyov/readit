@@ -120,7 +120,7 @@ const init = (app, data) => {
             const subreaditName = req.params.subreadit;
             res.redirect('/r/' + subreaditName + '/post/' + comment.postId);
         })
-        .get('/delete/:subreadit/post/comment/:id', async (req, res) => {
+        .get('/:subreadit/post/comment/:id', async (req, res) => {
             if (req.isAuthenticated()) {
                 const commentId = req.params.id;
                 let loggedUserId;
@@ -140,7 +140,7 @@ const init = (app, data) => {
                 res.redirect('/user/login');
             }
         })
-        .post('/delete/:subreadit/post/comment/:id', async (req, res) => {
+        .delete('/delete/:subreadit/post/comment/:id', async (req, res) => {
             const commentId = Number(req.params.id);
             const comment = await subreaditController.deleteComment(commentId);
             const subreaditName = req.params.subreadit;

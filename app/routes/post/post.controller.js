@@ -92,6 +92,16 @@ class PostController extends MainController {
         const newComment = await this.data.comments.create(commentObj);
         return newComment;
     }
+    async updateComment(updatedComment, id) {
+        let updateComment = await this.data.comments.update(updatedComment, id);
+        updateComment = await this.data.comments.getById(id);
+        return updateComment;
+    }
+    async deleteComment(id) {
+        const comment = await this.data.comments.getById(id);
+        await this.data.comments.deleteComment(id);
+        return comment;
+    }
     async getCommentInfo(id) {
         const commentsInfo = await this.data.comments.getById(id);
         return commentsInfo;

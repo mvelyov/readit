@@ -26,9 +26,9 @@ $(function () {
                 .text("Last updated: " + comment.updatedAgo);
             var $holdingSpan = $("<span>");
             var $aEdit = $("<a/>").attr("href", "/edit/" + postInfo.subreaditName +
-                "/post/comment/" + comment.id).text("Edit ");
-            var $aDelete = $("<a/>").attr("href", "/delete/" + postInfo.subreaditName +
-                "/post/comment" + comment.id).text("Delete");
+                "/post/comment/" + comment.id).text("Edit ").addClass("update");
+            var $aDelete = $("<button/>").text("Delete")
+                .data("id", comment.id).addClass("delete");
 
             $mediaDiv.appendTo($elementAfter);
             $mediaLeft.appendTo($mediaDiv);
@@ -50,6 +50,7 @@ $(function () {
     };
 
     var url = "/api/r/" + subreaditname + "/post/" + postId;
+    var delUrl = "/api/r/" + subreaditname + "/post/" + postId + "/comment/";
     var loadAllComments = function () {
         $.ajax({
             method: "GET",
@@ -82,6 +83,16 @@ $(function () {
                 $elementAfter.empty();
                 commentBuilder(info);
                 $("#commentTxt").val("");
+            }
+        });
+    });
+    $elementAfter.on("click", ".delete", function() {
+        var $divToDelete = $(this).closest("div.media");
+        $.ajax({
+            method: "DELETE",
+            url: delUrl + $(this).data("id"),
+            success: function () {
+                $divToDelete.remove();
             }
         });
     });

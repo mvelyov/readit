@@ -46,6 +46,31 @@ const init = (app, data) => {
             };
             req.flash('success', 'comment added');
             res.send(info);
+        })
+        .get('/post/:postId/comment/:id', async (req, res) => {
+            if (req.isAuthenticated()) {
+                const commentId = req.params.id;
+                let loggedUserId;
+                const authenticated = req.isAuthenticated();
+                if (authenticated) {
+                    loggedUserId = req.user.id;
+                }
+                const commentsInfo = await controller.getCommentInfo(commentId);
+                const subreaditName = req.params.subreadit;
+                const model = {
+                    commentsInfo,
+                    loggedUserId,
+                    subreaditName,
+                };
+                res.send(model);
+            } else {
+                res.redirect('/user/login');
+            }
+        })
+        .delete('/post/:postId/comment/:id', async (req, res) => {
+            const commentId = Number(req.params.id);
+            await controller.deleteComment(commentId);
+            res.end();
         });
 };
 

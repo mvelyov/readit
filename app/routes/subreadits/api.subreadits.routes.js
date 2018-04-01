@@ -7,7 +7,7 @@ const SubreaditController = require('./subreadits.controller');
 const init = (app, data) => {
     const controller = new SubreaditController(data);
     const router = new Router();
-    app.use('/api', router);
+    app.use('/api/r', router);
     router
         .get('/subreadits', async (req, res) => {
             const subreadits = await controller.getAllSubreadits();
@@ -16,7 +16,7 @@ const init = (app, data) => {
             };
             res.send(model);
         })
-        .get('/r/:subreadit', async (req, res) => {
+        .get('/:subreadit', async (req, res) => {
             const subreadit = req.params.subreadit;
             const posts = await controller.getPostsBySubreadit(subreadit);
             const model = {
@@ -25,7 +25,7 @@ const init = (app, data) => {
             };
             res.send(model);
         })
-        .get('/r/:subreadit/newest', async (req, res) => {
+        .get('/:subreadit/newest', async (req, res) => {
             const subreadit = req.params.subreadit;
             const posts = await controller
                 .sortSubreaditPostsByAge('ASC', subreadit);
@@ -35,7 +35,7 @@ const init = (app, data) => {
             };
             res.send(model);
         })
-        .get('/r/:subreadit/oldest', async (req, res) => {
+        .get('/:subreadit/oldest', async (req, res) => {
             const subreadit = req.params.subreadit;
             const posts = await controller
                 .sortSubreaditPostsByAge('DESC', subreadit);
@@ -45,7 +45,7 @@ const init = (app, data) => {
             };
             res.send(model);
         })
-        .get('/r/:subreadit/hottest', async (req, res) => {
+        .get('/:subreadit/hottest', async (req, res) => {
             const subreadit = req.params.subreadit;
             let posts = controller.getOnlySubreaditPosts(subreadit);
             posts = controller.sortByNumberOfComments(posts, 'DESC');
@@ -55,7 +55,7 @@ const init = (app, data) => {
             };
             res.send(model);
         })
-        .get('/r/:subreadit/hottest', async (req, res) => {
+        .get('/:subreadit/hottest', async (req, res) => {
             const subreadit = req.params.subreadit;
             let posts = controller.getOnlySubreaditPosts(subreadit);
             posts = controller.sortByNumberOfComments(posts, 'ASC');
@@ -65,7 +65,7 @@ const init = (app, data) => {
             };
             res.send(model);
         })
-        .post('/r/:subreadit', async (req, res) => {
+        .post('/:subreadit', async (req, res) => {
             const subreadit = req.params.subreadit;
             const post = req.body;
             post.userId = req.user.id;

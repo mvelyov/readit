@@ -6,6 +6,10 @@ class SubreaditController extends MainController {
     }
     async getSubreaditIdByName(subreaditName) {
         const subreadit = await this.data.subreadits.getByName(subreaditName);
+        if (!subreadit) {
+            const error = new Error('Subreadit by this name does not exisrt');
+            return error;
+        }
         const {
             id,
             headerImage,

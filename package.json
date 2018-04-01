@@ -2,7 +2,7 @@
   "name": "web-application-project",
   "version": "1.0.0",
   "description": "Telerik Academy Nodejs-Express-MariaDB project",
-  "main": "index.js",
+  "main": "server.js",
   "directories": {
     "test": "test"
   },

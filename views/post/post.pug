@@ -34,11 +34,11 @@ block content
         | Add a comment
     if authenticated
         p
-            form(action="/r/" + postInfo.subreaditName + "/post/" + postInfo.id, method="post")
+            div
                 div
-                textarea.textarea(name="content", cols="50", rows="5")
+                textarea#commentTxt.textarea(name="content", cols="50", rows="5")
                 div
-                    button(type="submit")
+                    button#createComment(type="button")
                         | Submit
     else
         p
@@ -65,14 +65,3 @@ block content
     //-                 span
     //-                 a(href="/delete/" + postInfo.subreaditName + "/post/comment/" +  comment.id)
     //-                     | Delete
-                        
-    //- script.
-    //-     var postId = window.location.pathname.match(/[0-9]/g)
-    //-     postId = postId.join("");
-    //-     var subreaditname = window.location.pathname.replace("/r/", "")
-    //-     .replace("/post/", "").replace(postId.toString(), "")
-    //-     console.log(postId)
-    //-     console.log(subreaditname)
-    //-     $("allComments").load("api/r/" + subreaditname + "/post/" + postId, function() {
-    //-         commentBuilder(model);
-    //-     })

@@ -113,8 +113,8 @@ More may be added soon...
 ####    **Importance: 1**
         - Using AJAX is a mandatory requirement for the project. We can use AJAX for POST/PUT/DELETE request for comments and posts, as well as for when the user logs-out. With AJAX, when the above requests are made, the result will appear on the page without refreshing the page, which will increase the user experience.
         - Използването на AJAX е задължиелно изискване за проекта. Можем да иползваме AJAX за POST/PUT/DELETE заявките за коментарите и постовете, както и когато потребителя се лог-аутне. С AJAX при правене на горните заявки, резултата ще се появава на страницата без да се налага да се презарежда странцита, което подобрява потребителското използване на сайта.
-#####    **WHO IS WORKING ON IT / КОЙ ЩЕ РАБОТИ НАД ТОВА:**
-#####   **STATUS:**
+#####    **WHO IS WORKING ON IT / КОЙ ЩЕ РАБОТИ НАД ТОВА:** -----> Vladi
+#####   **STATUS:** ---> Completed (for comments only)
 
 
 ###     **2. Implement Subreadit header image, bottom-nav and footer**
@@ -157,11 +157,15 @@ More may be added soon...
 ####    **Importance: 1**
         - This is a mandatory project requirement! We currently have quite a few tests already, however we have new controllers and new api functions and functionalities, which we need to test.
 #####    **WHO IS WORKING ON IT / КОЙ ЩЕ РАБОТИ НАД ТОВА:** ----> Vladi / Desi / Mario
-#####   **STATUS:** In Progress
+#####   **STATUS:** Completed
 
+Test:
+[Introduction](#GENERALAPP/PROJECTWORK)
 
-## **GENERAL APP/PROJECT WORK**
+## **GENERAL APP/PROJECT WORK** <a name="GENERALAPP/PROJECTWORK"></a>
 ###     **1. Deploy the app on the net via HEROKU**
-###     **2. Create a MarkDown for documentationo of the app**
 #####    **WHO IS WORKING ON IT / КОЙ ЩЕ РАБОТИ НАД ТОВА:**
 #####   **STATUS:**
+###     **2. Create a ReadMe for documentation of the app**
+#####    **WHO IS WORKING ON IT / КОЙ ЩЕ РАБОТИ НАД ТОВА:** -------> Vladi
+#####   **STATUS:** --- In Progress

@@ -164,8 +164,8 @@ Test:
 
 ## **GENERAL APP/PROJECT WORK** <a name="GENERALAPP/PROJECTWORK"></a>
 ###     **1. Deploy the app on the net via HEROKU**
-#####    **WHO IS WORKING ON IT / КОЙ ЩЕ РАБОТИ НАД ТОВА:**
-#####   **STATUS:**
+#####    **WHO IS WORKING ON IT / КОЙ ЩЕ РАБОТИ НАД ТОВА:** ------> Mario
+#####   **STATUS:** ------> Completed
 ###     **2. Create a ReadMe for documentation of the app**
 #####    **WHO IS WORKING ON IT / КОЙ ЩЕ РАБОТИ НАД ТОВА:** -------> Vladi
 #####   **STATUS:** --- In Progress

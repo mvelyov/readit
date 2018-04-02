@@ -1,7 +1,7 @@
 {
     "development": {
         "username": "root",
-        "password": "",
+        "password": null,
         "database": "readitdb",
         "host": "127.0.0.1",
         "dialect": "mysql",
@@ -16,10 +16,10 @@
         "logging": false
     },
     "production": {
-        "username": "root",
-        "password": null,
-        "database": "database_production",
-        "host": "127.0.0.1",
+        "username": "yguotkdcrsqtwbiu",
+        "password": "6YC3JuybdGj45jjj7VBbohdnWvU8ENEqBgHQGdiKYUDoonhFGCWfJsHXUpfnHzDw",
+        "database": "db80a906bf7cc242d6896ca8b600d8ca17",
+        "host": "80a906bf-7cc2-42d6-896c-a8b600d8ca17.mysql.sequelizer.com",
         "dialect": "mysql",
         "logging": false
     }

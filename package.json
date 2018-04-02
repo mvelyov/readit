@@ -43,7 +43,7 @@
     "sequelize": "^4.37.4",
     "sequelize-auto-migrations": "^1.0.2",
     "sequelize-cli": "^4.0.0",
-    "time-ago": "^0.2.1",
+    "time-ago": "^0.2.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",

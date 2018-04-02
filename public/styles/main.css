@@ -258,7 +258,7 @@ hr {
 }
 
 .media-body.commentBody p.commentCreatedAt {
-    font-size: 0.7em;
+    font-size: 10px;
     color: tan;
 }
 

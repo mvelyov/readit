@@ -26,12 +26,12 @@ $(function () {
             var $pUpdatedAgo = $("<p>").addClass("commentCreatedAt")
                 .text("Last updated: " + comment.updatedAgo);
             var $holdingSpan = $("<span>");
-            var $aEdit = $("<button/>").text("Edit").addClass("update noEdit")
+            var $aEdit = $("<button/>").text("Edit").addClass("update noEdit btn btn-info")
                 .data("id", comment.id);
             var $aDelete = $("<button/>").text("Delete")
-                .data("id", comment.id).addClass("delete noEdit");
-            var $saveEdit = $("<button/>").addClass("edit saveEdit").text("Save");
-            var $cancelEdit = $("<button/>").addClass("edit cancelEdit").text("Cancel");
+                .data("id", comment.id).addClass("delete noEdit btn btn-info");
+            var $saveEdit = $("<button/>").addClass("edit saveEdit btn btn-info").text("Save");
+            var $cancelEdit = $("<button/>").addClass("edit cancelEdit btn btn-info").text("Cancel");
 
             $mediaDiv.appendTo($elementAfter);
             $mediaLeft.appendTo($mediaDiv);

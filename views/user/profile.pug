@@ -22,7 +22,7 @@ block content
                                         .media
                                             .media-left
                                                 a(href=post.image)
-                                                    img.mediumAvatar(src=post.image, alt="")
+                                                    img.mediumAvatar.img-circle(src=post.image, alt="")
                                             .media-body
                                                 a.h3.media-heading(href="/r/" + post.subreadit + "/post/" + post.id) #{post.name}
                                                 p.h6 #{post.content}
@@ -50,9 +50,9 @@ block content
                                 div.postContainer
                                     div.innerPostContainer
                                         .media
-                                            .media-left.commentLet
+                                            .media-left.commentLeft
                                                 a(href=avatar)
-                                                    img.mediumAvatar(src=avatar, alt="")
+                                                    img.mediumAvatar.img-circle(src=avatar, alt="")
                                             .media-body.commentBody
                                                 h3.media-heading #{comment.content}
                                                 | On: 
